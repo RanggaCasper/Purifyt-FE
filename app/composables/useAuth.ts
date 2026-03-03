@@ -1,15 +1,35 @@
 import type { ApiResponse, TokenResponse, User, LoginPayload, RegisterPayload } from '~/types/auth'
 
-const accessToken = ref<string | null>(null)
-const user = ref<User | null>(null)
-const loading = ref(false)
-const authReady = ref(false)
+interface AuthState {
+  accessToken: Ref<string | null>
+  user: Ref<User | null>
+  loading: Ref<boolean>
+  authReady: Ref<boolean>
+  refreshTimer: ReturnType<typeof setTimeout> | null
+}
 
-let refreshTimer: ReturnType<typeof setTimeout> | null = null
+const AUTH_STATE_KEY = '__auth__'
+
+const getAuthState = (): AuthState => {
+  const nuxtApp = useNuxtApp()
+  if (!nuxtApp[AUTH_STATE_KEY]) {
+    nuxtApp[AUTH_STATE_KEY] = {
+      accessToken: ref<string | null>(null),
+      user: ref<User | null>(null),
+      loading: ref(false),
+      authReady: ref(false),
+      refreshTimer: null
+    } as AuthState
+  }
+  return nuxtApp[AUTH_STATE_KEY] as AuthState
+}
 
 export const useAuth = () => {
   const config = useRuntimeConfig()
   const API = config.public.apiBase as string
+
+  const state = getAuthState()
+  const { accessToken, user, loading, authReady } = state
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const authFetch = <T = unknown>(url: string, opts: Record<string, any> = {}) => {
@@ -26,9 +46,9 @@ export const useAuth = () => {
   }
 
   const scheduleRefresh = (expiresIn: number) => {
-    if (refreshTimer) clearTimeout(refreshTimer)
+    if (state.refreshTimer) clearTimeout(state.refreshTimer)
     const ms = Math.max((expiresIn - 60) * 1000, 5000)
-    refreshTimer = setTimeout(() => {
+    state.refreshTimer = setTimeout(() => {
       refresh().catch(() => logout())
     }, ms)
   }
@@ -116,9 +136,9 @@ export const useAuth = () => {
     } finally {
       accessToken.value = null
       user.value = null
-      if (refreshTimer) {
-        clearTimeout(refreshTimer)
-        refreshTimer = null
+      if (state.refreshTimer) {
+        clearTimeout(state.refreshTimer)
+        state.refreshTimer = null
       }
       await navigateTo('/login')
     }
