@@ -1,33 +1,35 @@
 <script setup lang="ts">
-const { isAuthenticated, user: authUser, logout } = useAuth();
-const route = useRoute();
-const colorMode = useColorMode();
-const { t, locale, setLocale } = useI18n();
+import { useColorMode } from '#imports'
+
+const { isAuthenticated, user: authUser, logout } = useAuth()
+const route = useRoute()
+const colorMode = useColorMode()
+const { t, locale, setLocale } = useI18n()
 
 const toggleLocale = () => {
-  setLocale(locale.value === "id" ? "en" : "id");
-};
+  setLocale(locale.value === 'id' ? 'en' : 'id')
+}
 
-const sidebarOpen = ref(true);
-const mobileSidebarOpen = ref(false);
+const sidebarOpen = ref(true)
+const mobileSidebarOpen = ref(false)
 
 const navigation = computed(() => [
-  { label: t("nav.dashboard"), icon: "i-lucide-home", to: "/dashboard" },
-  { label: t("nav.explorer"), icon: "i-lucide-search", to: "/explorer" },
-  { label: t("nav.autoDelete"), icon: "i-lucide-shield-off", to: "/auto-delete" },
-  { label: t("nav.datasets"), icon: "i-lucide-database", to: "/datasets" },
-  { label: t("nav.predict"), icon: "i-lucide-sparkles", to: "/predict" },
-  { label: t("nav.settings"), icon: "i-lucide-settings", to: "/settings" },
-]);
+  { label: t('nav.dashboard'), icon: 'i-lucide-home', to: '/dashboard' },
+  { label: t('nav.explorer'), icon: 'i-lucide-search', to: '/explorer' },
+  { label: t('nav.autoDelete'), icon: 'i-lucide-shield-off', to: '/auto-delete' },
+  { label: t('nav.datasets'), icon: 'i-lucide-database', to: '/datasets' },
+  { label: t('nav.predict'), icon: 'i-lucide-sparkles', to: '/predict' },
+  { label: t('nav.settings'), icon: 'i-lucide-settings', to: '/settings' }
+])
 
 const isActive = (to: string) => {
-  if (to === "/dashboard") return route.path === "/dashboard";
-  return route.path.startsWith(to);
-};
+  if (to === '/dashboard') return route.path === '/dashboard'
+  return route.path.startsWith(to)
+}
 
 const toggleDarkMode = () => {
-  colorMode.preference = colorMode.value === "dark" ? "light" : "dark";
-};
+  colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark'
+}
 </script>
 
 <template>
@@ -44,14 +46,14 @@ const toggleDarkMode = () => {
       :class="[
         'fixed inset-y-0 left-0 z-50 flex flex-col bg-default border-r border-default transition-all duration-300',
         sidebarOpen ? 'w-60' : 'w-60 lg:w-16',
-        mobileSidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0',
+        mobileSidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
       ]"
     >
       <!-- Collapse toggle + Logo -->
       <div
         :class="[
           'flex items-center h-14 px-3 border-b border-default transition-all duration-300',
-          sidebarOpen || mobileSidebarOpen ? 'justify-between' : 'justify-center',
+          sidebarOpen || mobileSidebarOpen ? 'justify-between' : 'justify-center'
         ]"
       >
         <NuxtLink
@@ -59,7 +61,11 @@ const toggleDarkMode = () => {
           to="/"
           class="flex items-center gap-2 overflow-hidden min-w-0"
         >
-          <img src="/logo.png" alt="Purifyt" class="h-8 w-auto shrink-0" />
+          <img
+            src="/logo.png"
+            alt="Purifyt"
+            class="h-8 w-auto shrink-0"
+          >
           <span class="font-semibold text-highlighted whitespace-nowrap truncate">
             Purifyt
           </span>
@@ -88,12 +94,18 @@ const toggleDarkMode = () => {
             sidebarOpen || mobileSidebarOpen ? 'px-2.5 py-2' : 'justify-center p-2',
             isActive(item.to)
               ? 'bg-blue-50 text-blue-600 dark:bg-blue-950 dark:text-blue-400'
-              : 'text-muted hover:bg-elevated hover:text-highlighted',
+              : 'text-muted hover:bg-elevated hover:text-highlighted'
           ]"
           @click="mobileSidebarOpen = false"
         >
-          <UIcon :name="item.icon" class="text-lg shrink-0" />
-          <span v-show="sidebarOpen || mobileSidebarOpen" class="whitespace-nowrap">{{
+          <UIcon
+            :name="item.icon"
+            class="text-lg shrink-0"
+          />
+          <span
+            v-show="sidebarOpen || mobileSidebarOpen"
+            class="whitespace-nowrap"
+          >{{
             item.label
           }}</span>
         </NuxtLink>
@@ -104,13 +116,13 @@ const toggleDarkMode = () => {
     <div
       :class="[
         'flex flex-col min-h-screen transition-all duration-300',
-        sidebarOpen ? 'lg:ml-60' : 'lg:ml-16',
+        sidebarOpen ? 'lg:ml-60' : 'lg:ml-16'
       ]"
     >
       <!-- Top navbar -->
       <header
         :class="[
-          'sticky top-0 z-30 h-14 bg-default/80 backdrop-blur-md border-b border-default flex items-center justify-between px-4 lg:px-6 transition-all duration-300',
+          'sticky top-0 z-30 h-14 bg-default/80 backdrop-blur-md border-b border-default flex items-center justify-between px-4 lg:px-6 transition-all duration-300'
         ]"
       >
         <div class="flex items-center gap-3">
@@ -119,14 +131,17 @@ const toggleDarkMode = () => {
             class="lg:hidden w-10 h-10 flex items-center justify-center rounded-xl bg-elevated hover:bg-slate-200 dark:hover:bg-slate-700 text-highlighted transition-all duration-200"
             @click="mobileSidebarOpen = !mobileSidebarOpen"
           >
-            <UIcon name="lucide:menu" class="w-5 h-5" />
+            <UIcon
+              name="lucide:menu"
+              class="w-5 h-5"
+            />
           </button>
 
           <!-- Breadcrumb -->
           <UBreadcrumb
             :items="[
               { label: 'Purifyt', to: '/dashboard' },
-              { label: (route.meta.title as string) || 'Dashboard' },
+              { label: (route.meta.title as string) || 'Dashboard' }
             ]"
           />
         </div>
@@ -155,13 +170,23 @@ const toggleDarkMode = () => {
               [{ label: authUser?.username || $t('nav.user'), type: 'label' as const }],
               [
                 { label: $t('common.settings'), icon: 'i-lucide-settings', onSelect: () => navigateTo('/settings') },
-                { label: $t('common.logout'), icon: 'i-lucide-log-out', onSelect: () => logout() },
-              ],
+                { label: $t('common.logout'), icon: 'i-lucide-log-out', onSelect: () => logout() }
+              ]
             ]"
           >
-            <UButton color="neutral" variant="ghost" icon="i-lucide-user" size="sm" />
+            <UButton
+              color="neutral"
+              variant="ghost"
+              icon="i-lucide-user"
+              size="sm"
+            />
           </UDropdownMenu>
-          <UButton v-else to="/login" :label="$t('common.login')" size="sm" />
+          <UButton
+            v-else
+            to="/login"
+            :label="$t('common.login')"
+            size="sm"
+          />
         </div>
       </header>
 

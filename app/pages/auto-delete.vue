@@ -1,6 +1,6 @@
 <script setup lang="ts">
 definePageMeta({
-  title: 'Auto Delete',
+  title: 'Auto Delete'
 })
 
 const autoDeleteStore = useAutoDeleteStore()
@@ -14,7 +14,10 @@ onMounted(() => {
 
 <template>
   <div>
-    <PageHeader :title="$t('autoDelete.title')" :description="$t('autoDelete.desc')" />
+    <PageHeader
+      :title="$t('autoDelete.title')"
+      :description="$t('autoDelete.desc')"
+    />
 
     <!-- Tab buttons -->
     <div class="flex gap-2 mb-6">
@@ -42,13 +45,19 @@ onMounted(() => {
     </div>
 
     <!-- TAB: SCAN & HAPUS -->
-    <div v-if="activeTab === 'scan'" class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div
+      v-if="activeTab === 'scan'"
+      class="grid grid-cols-1 lg:grid-cols-2 gap-6"
+    >
       <AutoDeleteScanForm />
       <AutoDeleteScanResults />
     </div>
 
     <!-- TAB: LOGIN GOOGLE -->
-    <div v-else-if="activeTab === 'login'" class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div
+      v-else-if="activeTab === 'login'"
+      class="grid grid-cols-1 lg:grid-cols-2 gap-6"
+    >
       <AutoDeleteLoginForm />
       <AutoDeleteLoginResults />
     </div>

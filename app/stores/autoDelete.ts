@@ -26,13 +26,13 @@ interface AutoDeleteState {
   // Login
   loginRunning: boolean
   loginLogs: AutoDeleteLogEntry[]
-  loginResult: { email: string; channelName: string } | null
+  loginResult: { email: string, channelName: string } | null
   loginError: string | null
 
   // Scan
   scanRunning: boolean
   scanLogs: AutoDeleteLogEntry[]
-  scanProgress: { current: number; total: number } | null
+  scanProgress: { current: number, total: number } | null
   scannedComments: ScannedComment[]
   judiComments: ScannedComment[]
   scanResult: ScanResult | null
@@ -44,6 +44,7 @@ interface AutoDeleteState {
   deleteError: string | null
 
   // Fetch comments
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   fetchedComments: Array<Record<string, any>>
   fetchRunning: boolean
   fetchError: string | null
@@ -77,22 +78,22 @@ export const useAutoDeleteStore = defineStore('autoDelete', {
   }),
 
   getters: {
-    activeAccounts: (state) => state.accounts.filter(a => a.is_active),
-    accountEmails: (state) => state.accounts.map(a => a.email)
+    activeAccounts: state => state.accounts.filter(a => a.is_active),
+    accountEmails: state => state.accounts.map(a => a.email)
   },
 
   actions: {
-    // Cookie / Account Management 
+    // Cookie / Account Management
 
     async fetchAccounts() {
       const { apiFetch } = useApi()
       this.accountsLoading = true
       try {
-        const result = await apiFetch<{ accounts: CookieAccount[]; total: number }>(
+        const result = await apiFetch<{ accounts: CookieAccount[], total: number }>(
           '/api/v1/auto-delete/cookies'
         )
         this.accounts = result.accounts
-      } catch (error: any) {
+      } catch (error: unknown) {
         this.accounts = []
         throw error
       } finally {
@@ -113,7 +114,7 @@ export const useAutoDeleteStore = defineStore('autoDelete', {
       this.accounts = this.accounts.filter(a => a.email !== email)
     },
 
-    // Login (SSE) 
+    // Login (SSE)
 
     async login(payload: LoginPayload) {
       const { apiStream } = useApi()
@@ -158,14 +159,14 @@ export const useAutoDeleteStore = defineStore('autoDelete', {
         },
         (error) => {
           const { $i18n } = useNuxtApp()
-          this.loginError = error?.message || $i18n.t('autoDelete.loginFailed')
+          this.loginError = (error instanceof Error ? error.message : null) || $i18n.t('autoDelete.loginFailed')
           this.loginRunning = false
         }
       )
       this.loginRunning = false
     },
 
-    // Scan (SSE) 
+    // Scan (SSE)
 
     async scan(payload: ScanPayload, preview = false) {
       const { apiStream } = useApi()
@@ -251,14 +252,14 @@ export const useAutoDeleteStore = defineStore('autoDelete', {
         },
         (error) => {
           const { $i18n } = useNuxtApp()
-          this.scanError = error?.message || $i18n.t('autoDelete.scanFailed')
+          this.scanError = (error instanceof Error ? error.message : null) || $i18n.t('autoDelete.scanFailed')
           this.scanRunning = false
         }
       )
       this.scanRunning = false
     },
 
-    // Delete Specific Comments (SSE) 
+    // Delete Specific Comments (SSE)
 
     async deleteComments(payload: DeletePayload) {
       const { apiStream } = useApi()
@@ -285,14 +286,14 @@ export const useAutoDeleteStore = defineStore('autoDelete', {
         },
         (error) => {
           const { $i18n } = useNuxtApp()
-          this.deleteError = error?.message || $i18n.t('autoDelete.deleteFailed')
+          this.deleteError = (error instanceof Error ? error.message : null) || $i18n.t('autoDelete.deleteFailed')
           this.deleteRunning = false
         }
       )
       this.deleteRunning = false
     },
 
-    // Fetch All Comments (SSE) 
+    // Fetch All Comments (SSE)
 
     async fetchComments(payload: FetchCommentsPayload) {
       const { apiStream } = useApi()
@@ -315,14 +316,14 @@ export const useAutoDeleteStore = defineStore('autoDelete', {
         },
         (error) => {
           const { $i18n } = useNuxtApp()
-          this.fetchError = error?.message || $i18n.t('autoDelete.fetchFailed')
+          this.fetchError = (error instanceof Error ? error.message : null) || $i18n.t('autoDelete.fetchFailed')
           this.fetchRunning = false
         }
       )
       this.fetchRunning = false
     },
 
-    // Resets 
+    // Resets
 
     resetLogin() {
       this.loginRunning = false

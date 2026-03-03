@@ -1,15 +1,17 @@
 <script setup lang="ts">
-const colorMode = useColorMode();
-const { isAuthenticated } = useAuth();
-const { locale, setLocale } = useI18n();
+import { useColorMode } from '#imports'
+
+const colorMode = useColorMode()
+const { isAuthenticated } = useAuth()
+const { locale, setLocale } = useI18n()
 
 const toggleDarkMode = () => {
-  colorMode.preference = colorMode.value === "dark" ? "light" : "dark";
-};
+  colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark'
+}
 
 const toggleLocale = () => {
-  setLocale(locale.value === "id" ? "en" : "id");
-};
+  setLocale(locale.value === 'id' ? 'en' : 'id')
+}
 </script>
 
 <template>
@@ -21,8 +23,15 @@ const toggleLocale = () => {
       <div
         class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between"
       >
-        <NuxtLink to="/" class="flex items-center gap-2">
-          <img src="/logo.png" alt="Purifyt" class="h-9 w-auto" />
+        <NuxtLink
+          to="/"
+          class="flex items-center gap-2"
+        >
+          <img
+            src="/logo.png"
+            alt="Purifyt"
+            class="h-9 w-auto"
+          >
           <span class="text-xl font-semibold text-highlighted">Purifyt</span>
         </NuxtLink>
 
@@ -60,7 +69,11 @@ const toggleLocale = () => {
               color="neutral"
               size="sm"
             />
-            <UButton to="/register" :label="$t('common.getStarted')" size="sm" />
+            <UButton
+              to="/register"
+              :label="$t('common.getStarted')"
+              size="sm"
+            />
           </template>
         </div>
       </div>
@@ -76,7 +89,11 @@ const toggleLocale = () => {
           <!-- Brand -->
           <div class="lg:col-span-2">
             <div class="flex items-center gap-2 mb-4">
-              <img src="/logo.png" alt="Purifyt" class="h-9 w-auto shrink-0" />
+              <img
+                src="/logo.png"
+                alt="Purifyt"
+                class="h-9 w-auto shrink-0"
+              >
               <span class="text-xl font-bold text-highlighted">Purifyt</span>
             </div>
             <p class="text-sm text-muted leading-relaxed max-w-xs">
@@ -99,7 +116,10 @@ const toggleLocale = () => {
                   to="/register"
                   class="text-sm text-muted hover:text-highlighted transition-colors flex items-center gap-1.5"
                 >
-                  <UIcon name="i-lucide-shield-off" class="text-xs text-blue-400" />
+                  <UIcon
+                    name="i-lucide-shield-off"
+                    class="text-xs text-blue-400"
+                  />
                   {{ $t("landing.featureAutoDelete") }}
                 </NuxtLink>
               </li>
@@ -108,7 +128,10 @@ const toggleLocale = () => {
                   to="/predict"
                   class="text-sm text-muted hover:text-highlighted transition-colors flex items-center gap-1.5"
                 >
-                  <UIcon name="i-lucide-sparkles" class="text-xs text-blue-400" />
+                  <UIcon
+                    name="i-lucide-sparkles"
+                    class="text-xs text-blue-400"
+                  />
                   {{ $t("landing.featurePredict") }}
                 </NuxtLink>
               </li>
@@ -125,22 +148,19 @@ const toggleLocale = () => {
                 <NuxtLink
                   to="/login"
                   class="text-sm text-muted hover:text-highlighted transition-colors"
-                  >{{ $t("common.login") }}</NuxtLink
-                >
+                >{{ $t("common.login") }}</NuxtLink>
               </li>
               <li>
                 <NuxtLink
                   to="/register"
                   class="text-sm text-muted hover:text-highlighted transition-colors"
-                  >{{ $t("footer.register") }}</NuxtLink
-                >
+                >{{ $t("footer.register") }}</NuxtLink>
               </li>
               <li v-if="isAuthenticated">
                 <NuxtLink
                   to="/dashboard"
                   class="text-sm text-muted hover:text-highlighted transition-colors"
-                  >{{ $t("common.dashboard") }}</NuxtLink
-                >
+                >{{ $t("common.dashboard") }}</NuxtLink>
               </li>
             </ul>
           </div>
@@ -158,11 +178,17 @@ const toggleLocale = () => {
           </p>
           <div class="flex items-center gap-4">
             <span class="inline-flex items-center gap-1.5 text-xs text-muted">
-              <UIcon name="i-lucide-shield-check" class="text-blue-500 text-sm" />
+              <UIcon
+                name="i-lucide-shield-check"
+                class="text-blue-500 text-sm"
+              />
               {{ $t("footer.aiAccuracy") }}
             </span>
             <span class="inline-flex items-center gap-1.5 text-xs text-muted">
-              <UIcon name="i-lucide-bot" class="text-emerald-500 text-sm" />
+              <UIcon
+                name="i-lucide-bot"
+                class="text-emerald-500 text-sm"
+              />
               {{ $t("footer.seleniumAuto") }}
             </span>
           </div>

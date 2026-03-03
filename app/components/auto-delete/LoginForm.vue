@@ -7,7 +7,7 @@ const loginForm = reactive({
   email: '',
   password: '',
   headless: true,
-  timeout: 120,
+  timeout: 120
 })
 
 async function handleLogin() {
@@ -19,16 +19,16 @@ async function handleLogin() {
     email: loginForm.email,
     password: loginForm.password,
     headless: loginForm.headless,
-    timeout: loginForm.timeout,
+    timeout: loginForm.timeout
   })
   if (autoDeleteStore.loginError) {
     toast.add({ title: autoDeleteStore.loginError, color: 'error' })
   } else if (autoDeleteStore.loginResult) {
     toast.add({
       title: t('autoDelete.loginSuccessToast', {
-        name: autoDeleteStore.loginResult.channelName,
+        name: autoDeleteStore.loginResult.channelName
       }),
-      color: 'success',
+      color: 'success'
     })
     autoDeleteStore.fetchAccounts().catch(() => {})
   }
@@ -49,7 +49,10 @@ async function handleLogin() {
       icon="i-lucide-alert-triangle"
     />
 
-    <form @submit.prevent="handleLogin" class="space-y-4">
+    <form
+      class="space-y-4"
+      @submit.prevent="handleLogin"
+    >
       <UFormField :label="$t('autoDelete.googleEmail')">
         <UInput
           v-model="loginForm.email"
@@ -124,9 +127,9 @@ async function handleLogin() {
         />
         <UButton
           v-if="
-            autoDeleteStore.loginResult ||
-            autoDeleteStore.loginError ||
-            autoDeleteStore.loginLogs.length > 0
+            autoDeleteStore.loginResult
+              || autoDeleteStore.loginError
+              || autoDeleteStore.loginLogs.length > 0
           "
           :label="$t('common.reset')"
           variant="outline"

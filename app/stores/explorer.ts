@@ -44,6 +44,7 @@ export const useExplorerStore = defineStore('explorer', {
   }),
 
   actions: {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     _handleEvent(event: any) {
       const type: string = event.type ?? 'info'
 
@@ -59,13 +60,15 @@ export const useExplorerStore = defineStore('explorer', {
           percentage: event.percentage
         }
       } else if (type === 'label_done') {
-        this.labelProgress = { labeled: event.judi_count + event.normal_count, total: event.judi_count + event.normal_count, percentage: 100 }
+        const judiCount = event.judi_count as number
+        const normalCount = event.normal_count as number
+        this.labelProgress = { labeled: judiCount + normalCount, total: judiCount + normalCount, percentage: 100 }
       } else if (type === 'video_saved') {
         this.datasetId = event.dataset_id ?? this.datasetId
       } else if (type === 'complete') {
         this.isRunning = false
         this.datasetId = event.dataset?.id ?? null
-        this.result = event.stats ?? null
+        this.result = (event.stats as ExplorerResult) ?? null
       }
     },
 
@@ -81,10 +84,10 @@ export const useExplorerStore = defineStore('explorer', {
       await apiStream(
         '/api/v1/explorer/run',
         { video_id: videoId, dataset_name: datasetName },
-        (event) => this._handleEvent(event),
-        (error) => {
+        event => this._handleEvent(event),
+        (error: unknown) => {
           const { $i18n } = useNuxtApp()
-          this.error = error?.message || $i18n.t('explorer.explorerFailed')
+          this.error = (error as Error)?.message || $i18n.t('explorer.explorerFailed')
           this.isRunning = false
         }
       )
@@ -103,10 +106,10 @@ export const useExplorerStore = defineStore('explorer', {
       await apiStream(
         '/api/v1/explorer/channel/run',
         { channel, max_videos: maxVideos, dataset_name: datasetName },
-        (event) => this._handleEvent(event),
-        (error) => {
+        event => this._handleEvent(event),
+        (error: unknown) => {
           const { $i18n } = useNuxtApp()
-          this.error = error?.message || $i18n.t('explorer.channelExplorerFailed')
+          this.error = (error as Error)?.message || $i18n.t('explorer.channelExplorerFailed')
           this.isRunning = false
         }
       )
@@ -123,4 +126,3 @@ export const useExplorerStore = defineStore('explorer', {
     }
   }
 })
-

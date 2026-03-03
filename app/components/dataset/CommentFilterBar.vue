@@ -1,16 +1,16 @@
 <script setup lang="ts">
 defineProps<{
-  searchQuery: string;
-  labelFilter: "all" | "judi" | "normal" | "unlabeled";
-  commentPerPage: number;
-  commentPerPageOptions: { label: string; value: number }[];
-}>();
+  searchQuery: string
+  labelFilter: 'all' | 'judi' | 'normal' | 'unlabeled'
+  commentPerPage: number
+  commentPerPageOptions: { label: string, value: number }[]
+}>()
 
 const emit = defineEmits<{
-  "update:searchQuery": [value: string];
-  "update:labelFilter": [value: "all" | "judi" | "normal" | "unlabeled"];
-  "update:commentPerPage": [value: number];
-}>();
+  'update:searchQuery': [value: string]
+  'update:labelFilter': [value: 'all' | 'judi' | 'normal' | 'unlabeled']
+  'update:commentPerPage': [value: number]
+}>()
 </script>
 
 <template>
@@ -39,10 +39,10 @@ const emit = defineEmits<{
           f === 'all'
             ? $t('datasetDetail.all')
             : f === 'judi'
-            ? $t('common.judi')
-            : f === 'normal'
-            ? $t('common.normal')
-            : $t('common.predict')
+              ? $t('common.judi')
+              : f === 'normal'
+                ? $t('common.normal')
+                : $t('common.predict')
         "
         :color="labelFilter === f ? 'primary' : 'neutral'"
         :variant="labelFilter === f ? 'solid' : 'outline'"

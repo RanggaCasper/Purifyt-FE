@@ -1,6 +1,6 @@
 <script setup lang="ts">
 definePageMeta({
-  title: 'Datasets',
+  title: 'Datasets'
 })
 
 const datasetStore = useDatasetStore()
@@ -17,14 +17,14 @@ const perPageOptions = computed(() => [
   { label: t('datasets.perPage10'), value: 10 },
   { label: t('datasets.perPage20'), value: 20 },
   { label: t('datasets.perPage50'), value: 50 },
-  { label: t('datasets.perPage100'), value: 100 },
+  { label: t('datasets.perPage100'), value: 100 }
 ])
 
 const sources = computed(() => [
   { label: t('datasets.allSources'), value: '' },
   { label: t('datasets.youtubeApi'), value: 'youtube_api' },
   { label: t('datasets.kaggle'), value: 'kaggle' },
-  { label: 'Manual', value: 'manual' },
+  { label: 'Manual', value: 'manual' }
 ])
 
 async function loadDatasets(page = currentPage.value) {
@@ -70,7 +70,7 @@ watch(perPage, () => {
 onMounted(() => loadDatasets())
 
 const sourceLabel = (source: string) => {
-  const s = sources.value.find((s) => s.value === source)
+  const s = sources.value.find(s => s.value === source)
   return s ? s.label : source
 }
 
@@ -78,7 +78,7 @@ const sourceColor = (source: string) => {
   const map: Record<string, string> = {
     youtube_api: 'bg-red-100 text-red-700 dark:bg-red-950 dark:text-red-400',
     kaggle: 'bg-blue-100 text-blue-700 dark:bg-blue-950 dark:text-blue-400',
-    manual: 'bg-purple-100 text-purple-700 dark:bg-purple-950 dark:text-purple-400',
+    manual: 'bg-purple-100 text-purple-700 dark:bg-purple-950 dark:text-purple-400'
   }
   return map[source] ?? 'bg-neutral-100 text-neutral-600 dark:bg-neutral-800 dark:text-neutral-400'
 }
@@ -87,7 +87,10 @@ const sourceColor = (source: string) => {
 <template>
   <div>
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
-      <PageHeader :title="$t('datasets.title')" :description="$t('datasets.desc')" />
+      <PageHeader
+        :title="$t('datasets.title')"
+        :description="$t('datasets.desc')"
+      />
     </div>
 
     <!-- Filters + per-page -->

@@ -11,7 +11,8 @@ export const useAuth = () => {
   const config = useRuntimeConfig()
   const API = config.public.apiBase as string
 
-  const authFetch = <T = any>(url: string, opts: Record<string, any> = {}) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const authFetch = <T = unknown>(url: string, opts: Record<string, any> = {}) => {
     return $fetch<ApiResponse<T>>(`${API}${url}`, {
       ...opts,
       credentials: 'include',
@@ -19,8 +20,8 @@ export const useAuth = () => {
         ...(opts.headers || {}),
         ...(accessToken.value
           ? { Authorization: `Bearer ${accessToken.value}` }
-          : {}),
-      },
+          : {})
+      }
     })
   }
 
@@ -44,7 +45,7 @@ export const useAuth = () => {
     try {
       const res = await authFetch<TokenResponse>('/api/v1/auth/login', {
         method: 'POST',
-        body: { username: payload.username, password: payload.password },
+        body: { username: payload.username, password: payload.password }
       })
 
       if (!res.status || !res.data) {
@@ -54,11 +55,12 @@ export const useAuth = () => {
 
       setTokens(res.data)
       await fetchUser()
-    } catch (err: any) {
-      const body = err?.data as ApiResponse | undefined
+    } catch (err: unknown) {
+      const e = err as { data?: ApiResponse, status?: number, statusCode?: number, message?: string }
+      const body = e?.data as ApiResponse | undefined
       const { $i18n } = useNuxtApp()
-      const isNetworkError = !body && !err?.status && !err?.statusCode
-      const msg = body?.message || (isNetworkError ? $i18n.t('auth.networkError') : (err?.message || $i18n.t('auth.loginFailed')))
+      const isNetworkError = !body && !e?.status && !e?.statusCode
+      const msg = body?.message || (isNetworkError ? $i18n.t('auth.networkError') : (e?.message || $i18n.t('auth.loginFailed')))
       throw new Error(msg)
     } finally {
       loading.value = false
@@ -70,18 +72,19 @@ export const useAuth = () => {
     try {
       const res = await authFetch<User>('/api/v1/auth/register', {
         method: 'POST',
-        body: payload,
+        body: payload
       })
 
       if (!res.status) {
         const { $i18n } = useNuxtApp()
         throw new Error(res.message || $i18n.t('auth.registrationFailed'))
       }
-    } catch (err: any) {
-      const body = err?.data as ApiResponse | undefined
+    } catch (err: unknown) {
+      const e = err as { data?: ApiResponse, status?: number, statusCode?: number, message?: string }
+      const body = e?.data as ApiResponse | undefined
       const { $i18n } = useNuxtApp()
-      const isNetworkError = !body && !err?.status && !err?.statusCode
-      const msg = body?.message || (isNetworkError ? $i18n.t('auth.networkError') : (err?.message || $i18n.t('auth.registrationFailed')))
+      const isNetworkError = !body && !e?.status && !e?.statusCode
+      const msg = body?.message || (isNetworkError ? $i18n.t('auth.networkError') : (e?.message || $i18n.t('auth.registrationFailed')))
       throw new Error(msg)
     } finally {
       loading.value = false
@@ -91,7 +94,7 @@ export const useAuth = () => {
   const refresh = async (): Promise<boolean> => {
     try {
       const res = await authFetch<TokenResponse>('/api/v1/auth/refresh', {
-        method: 'POST',
+        method: 'POST'
       })
 
       if (!res.status || !res.data) return false
@@ -155,6 +158,6 @@ export const useAuth = () => {
     refresh,
     logout,
     fetchUser,
-    init,
+    init
   }
 }

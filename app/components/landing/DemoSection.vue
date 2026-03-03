@@ -3,8 +3,12 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-2xl mx-auto mb-12">
         <span class="inline-block text-xs font-semibold tracking-widest uppercase text-blue-500 dark:text-blue-400 mb-3">{{ $t('landing.demoLabel') }}</span>
-        <h2 class="text-3xl sm:text-4xl font-bold text-highlighted">{{ $t('landing.demoTitle') }}</h2>
-        <p class="mt-4 text-lg text-muted">{{ $t('landing.demoDesc') }}</p>
+        <h2 class="text-3xl sm:text-4xl font-bold text-highlighted">
+          {{ $t('landing.demoTitle') }}
+        </h2>
+        <p class="mt-4 text-lg text-muted">
+          {{ $t('landing.demoDesc') }}
+        </p>
       </div>
 
       <div class="max-w-2xl mx-auto rounded-2xl overflow-hidden shadow-2xl border border-slate-700 dark:border-neutral-800">
@@ -21,35 +25,59 @@
         <!-- Log body -->
         <div class="px-4 py-4 space-y-2 bg-slate-900 dark:bg-neutral-950 font-mono text-xs">
           <div class="flex items-center gap-2.5">
-            <UIcon name="i-lucide-info" class="text-sky-400 shrink-0" />
+            <UIcon
+              name="i-lucide-info"
+              class="text-sky-400 shrink-0"
+            />
             <span class="text-neutral-300">{{ $t('landing.demoLog1') }}</span>
           </div>
           <div class="flex items-center gap-2.5">
-            <UIcon name="i-lucide-info" class="text-sky-400 shrink-0" />
+            <UIcon
+              name="i-lucide-info"
+              class="text-sky-400 shrink-0"
+            />
             <span class="text-neutral-300">{{ $t('landing.demoLog2') }} <span class="text-emerald-400">✓</span></span>
           </div>
           <div class="flex items-center gap-2.5">
-            <UIcon name="i-lucide-message-square" class="text-violet-400 shrink-0" />
+            <UIcon
+              name="i-lucide-message-square"
+              class="text-violet-400 shrink-0"
+            />
             <span class="text-neutral-300">{{ $t('landing.demoLog3') }}</span>
           </div>
           <div class="flex items-center gap-2.5">
-            <UIcon name="i-lucide-message-square" class="text-violet-400 shrink-0" />
+            <UIcon
+              name="i-lucide-message-square"
+              class="text-violet-400 shrink-0"
+            />
             <span class="text-neutral-300">{{ $t('landing.demoLog4') }} <span class="text-emerald-400">✓</span></span>
           </div>
           <div class="flex items-center gap-2.5">
-            <UIcon name="i-lucide-sparkles" class="text-yellow-400 shrink-0" />
+            <UIcon
+              name="i-lucide-sparkles"
+              class="text-yellow-400 shrink-0"
+            />
             <span class="text-neutral-300">{{ $t('landing.demoLog5') }}</span>
           </div>
           <div class="flex items-center gap-2.5">
-            <UIcon name="i-lucide-sparkles" class="text-yellow-400 shrink-0" />
+            <UIcon
+              name="i-lucide-sparkles"
+              class="text-yellow-400 shrink-0"
+            />
             <span class="text-neutral-300">{{ $t('landing.demoLog6') }} <span class="text-emerald-400">✓</span></span>
           </div>
           <div class="flex items-center gap-2.5">
-            <UIcon name="i-lucide-info" class="text-sky-400 shrink-0" />
+            <UIcon
+              name="i-lucide-info"
+              class="text-sky-400 shrink-0"
+            />
             <span class="text-neutral-300">{{ $t('landing.demoLog7') }}</span>
           </div>
           <div class="flex items-center gap-2.5">
-            <UIcon name="i-lucide-circle-check-big" class="text-emerald-400 shrink-0" />
+            <UIcon
+              name="i-lucide-circle-check-big"
+              class="text-emerald-400 shrink-0"
+            />
             <span class="text-emerald-300 font-semibold">{{ $t('landing.demoLog8') }}</span>
           </div>
         </div>

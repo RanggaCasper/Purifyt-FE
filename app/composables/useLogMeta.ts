@@ -20,7 +20,7 @@ const autoDeleteMap: Record<string, LogMeta> = {
   delete: { icon: 'i-lucide-trash-2', colorClass: 'text-red-400' },
   fetch: { icon: 'i-lucide-download', colorClass: 'text-blue-400' },
   done: { icon: 'i-lucide-circle-check-big', colorClass: 'text-emerald-400' },
-  error: { icon: 'i-lucide-alert-circle', colorClass: 'text-red-400' },
+  error: { icon: 'i-lucide-alert-circle', colorClass: 'text-red-400' }
 }
 
 // Explorer events (keyed by type)
@@ -41,7 +41,7 @@ const explorerMap: Record<string, LogMeta> = {
   video_start: { icon: 'i-lucide-play-circle', colorClass: 'text-blue-300' },
   video_comments: { icon: 'i-lucide-messages-square', colorClass: 'text-violet-400' },
   video_no_judi: { icon: 'i-lucide-shield-check', colorClass: 'text-green-400' },
-  video_saved: { icon: 'i-lucide-database', colorClass: 'text-emerald-400' },
+  video_saved: { icon: 'i-lucide-database', colorClass: 'text-emerald-400' }
 }
 
 // Merged lookup (auto-delete keys take priority, explorer keys fill in the rest)

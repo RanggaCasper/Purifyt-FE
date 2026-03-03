@@ -25,8 +25,13 @@ function reset() {
 
 <template>
   <div>
-    <h3 class="font-medium text-sm text-highlighted mb-3">{{ $t('predict.singlePrediction') }}</h3>
-    <form @submit.prevent="predictSingle" class="space-y-4">
+    <h3 class="font-medium text-sm text-highlighted mb-3">
+      {{ $t('predict.singlePrediction') }}
+    </h3>
+    <form
+      class="space-y-4"
+      @submit.prevent="predictSingle"
+    >
       <UFormField :label="$t('predict.commentLabel')">
         <UTextarea
           v-model="singleText"

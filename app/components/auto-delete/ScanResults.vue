@@ -14,10 +14,10 @@ const { getLogMeta } = useLogMeta()
       :progress="
         autoDeleteStore.scanProgress && autoDeleteStore.scanProgress.total > 0
           ? {
-              current: autoDeleteStore.scanProgress.current,
-              total: autoDeleteStore.scanProgress.total,
-              label: $t('autoDelete.scanningComments'),
-            }
+            current: autoDeleteStore.scanProgress.current,
+            total: autoDeleteStore.scanProgress.total,
+            label: $t('autoDelete.scanningComments')
+          }
           : null
       "
       :log-meta="getLogMeta"
@@ -25,7 +25,10 @@ const { getLogMeta } = useLogMeta()
     />
 
     <!-- Result stats -->
-    <div v-if="autoDeleteStore.scanResult" class="space-y-4">
+    <div
+      v-if="autoDeleteStore.scanResult"
+      class="space-y-4"
+    >
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
         <StatCard
           :title="$t('autoDelete.scanned')"
@@ -54,7 +57,10 @@ const { getLogMeta } = useLogMeta()
       </div>
 
       <!-- Judi comments list -->
-      <DataCard v-if="autoDeleteStore.judiComments.length > 0" :empty="false">
+      <DataCard
+        v-if="autoDeleteStore.judiComments.length > 0"
+        :empty="false"
+      >
         <div class="px-5 py-3 border-b border-default flex items-center justify-between">
           <h3 class="font-medium text-sm text-highlighted">
             {{ $t('autoDelete.gamblingDetected') }} ({{ autoDeleteStore.judiComments.length }})
@@ -69,7 +75,10 @@ const { getLogMeta } = useLogMeta()
             <div class="flex items-start justify-between gap-3">
               <div class="flex-1 min-w-0">
                 <div class="flex items-center gap-1.5 mb-1">
-                  <UIcon name="i-lucide-user" class="text-xs text-muted shrink-0" />
+                  <UIcon
+                    name="i-lucide-user"
+                    class="text-xs text-muted shrink-0"
+                  />
                   <span class="text-xs font-medium text-muted truncate">{{ comment.author }}</span>
                 </div>
                 <p
@@ -82,7 +91,10 @@ const { getLogMeta } = useLogMeta()
                   <span>{{ $t('common.confidence') }}: {{ (comment.confidence * 100).toFixed(1) }}%</span>
                 </div>
               </div>
-              <LabelBadge :label="1" class="shrink-0 mt-0.5" />
+              <LabelBadge
+                :label="1"
+                class="shrink-0 mt-0.5"
+              />
             </div>
           </div>
         </div>
@@ -100,14 +112,17 @@ const { getLogMeta } = useLogMeta()
     <!-- Empty state -->
     <div
       v-if="
-        !autoDeleteStore.scanRunning &&
-        !autoDeleteStore.scanResult &&
-        !autoDeleteStore.scanError &&
-        autoDeleteStore.scanLogs.length === 0
+        !autoDeleteStore.scanRunning
+          && !autoDeleteStore.scanResult
+          && !autoDeleteStore.scanError
+          && autoDeleteStore.scanLogs.length === 0
       "
       class="bg-default border border-default rounded-xl p-12 flex flex-col items-center gap-3 text-center"
     >
-      <UIcon name="i-lucide-scan-search" class="text-4xl text-dimmed" />
+      <UIcon
+        name="i-lucide-scan-search"
+        class="text-4xl text-dimmed"
+      />
       <h3 class="text-sm font-medium text-highlighted">
         {{ $t('autoDelete.readyTitle') }}
       </h3>

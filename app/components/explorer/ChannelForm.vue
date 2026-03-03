@@ -6,7 +6,7 @@ const { t } = useI18n()
 const channelForm = reactive({
   channel: '',
   maxVideos: 5,
-  datasetName: '',
+  datasetName: ''
 })
 
 async function runChannelExplorer() {
@@ -40,7 +40,10 @@ function resetExplorer() {
       {{ $t('explorer.channelExplorer') }}
     </h3>
 
-    <form @submit.prevent="runChannelExplorer" class="space-y-4">
+    <form
+      class="space-y-4"
+      @submit.prevent="runChannelExplorer"
+    >
       <UFormField :label="$t('explorer.channelNameLabel')">
         <UInput
           v-model="channelForm.channel"

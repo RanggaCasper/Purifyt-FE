@@ -6,7 +6,7 @@ const { extractVideoId } = useVideoId()
 
 const videoForm = reactive({
   videoId: '',
-  datasetName: '',
+  datasetName: ''
 })
 
 async function runVideoExplorer() {
@@ -21,7 +21,7 @@ async function runVideoExplorer() {
   } else if (explorerStore.result) {
     toast.add({
       title: t('explorer.analysisComplete', { n: explorerStore.result.total_judi }),
-      color: 'success',
+      color: 'success'
     })
   }
 }
@@ -39,7 +39,10 @@ function resetExplorer() {
       {{ $t('explorer.videoExplorer') }}
     </h3>
 
-    <form @submit.prevent="runVideoExplorer" class="space-y-4">
+    <form
+      class="space-y-4"
+      @submit.prevent="runVideoExplorer"
+    >
       <UFormField :label="$t('explorer.videoUrlLabel')">
         <UInput
           v-model="videoForm.videoId"

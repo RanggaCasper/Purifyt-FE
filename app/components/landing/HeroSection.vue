@@ -1,14 +1,36 @@
 <template>
   <section class="relative overflow-hidden">
     <!-- Background pattern -->
-    <div class="absolute inset-0 pointer-events-none select-none" aria-hidden="true">
-      <svg class="absolute inset-0 w-full h-full opacity-[0.04] dark:opacity-[0.07]" xmlns="http://www.w3.org/2000/svg">
+    <div
+      class="absolute inset-0 pointer-events-none select-none"
+      aria-hidden="true"
+    >
+      <svg
+        class="absolute inset-0 w-full h-full opacity-[0.04] dark:opacity-[0.07]"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <defs>
-          <pattern id="hero-dots" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
-            <circle cx="2" cy="2" r="1.5" fill="currentColor" />
+          <pattern
+            id="hero-dots"
+            x="0"
+            y="0"
+            width="24"
+            height="24"
+            patternUnits="userSpaceOnUse"
+          >
+            <circle
+              cx="2"
+              cy="2"
+              r="1.5"
+              fill="currentColor"
+            />
           </pattern>
         </defs>
-        <rect width="100%" height="100%" fill="url(#hero-dots)" />
+        <rect
+          width="100%"
+          height="100%"
+          fill="url(#hero-dots)"
+        />
       </svg>
       <div class="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-default" />
     </div>
@@ -36,8 +58,19 @@
 
         <!-- CTA -->
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10">
-          <UButton to="/register" :label="$t('landing.ctaStart')" size="xl" icon="i-lucide-shield-check" />
-          <UButton to="/login" :label="$t('landing.ctaLogin')" variant="outline" color="neutral" size="xl" />
+          <UButton
+            to="/register"
+            :label="$t('landing.ctaStart')"
+            size="xl"
+            icon="i-lucide-shield-check"
+          />
+          <UButton
+            to="/login"
+            :label="$t('landing.ctaLogin')"
+            variant="outline"
+            color="neutral"
+            size="xl"
+          />
         </div>
       </div>
     </div>

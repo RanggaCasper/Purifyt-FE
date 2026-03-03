@@ -5,7 +5,7 @@ export interface ApiResponse<T = unknown> {
   status: boolean
   data: T | null
   message: string
-  errors: Record<string, any> | null
+  errors: Record<string, unknown> | null
   timestamp: string
 }
 
@@ -26,12 +26,12 @@ export interface PaginatedResponse<T> {
  */
 export class ApiError extends Error {
   readonly statusCode: number | undefined
-  readonly errors: Record<string, any> | null
+  readonly errors: Record<string, unknown> | null
   readonly timestamp: string
 
   constructor(
     message: string,
-    errors: Record<string, any> | null = null,
+    errors: Record<string, unknown> | null = null,
     timestamp = '',
     statusCode?: number
   ) {
@@ -82,11 +82,12 @@ export function useApi() {
   }
 
   function shouldRetry(url: string): boolean {
-    return !NO_RETRY_PATHS.some((p) => url.includes(p))
+    return !NO_RETRY_PATHS.some(p => url.includes(p))
   }
 
   async function apiFetch<T>(
     url: string,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     options: Record<string, any> = {}
   ): Promise<T> {
     function buildHeaders(): Record<string, string> {
@@ -104,25 +105,26 @@ export function useApi() {
         raw = await $fetch<ApiResponse<T>>(`${baseURL}${url}`, {
           ...options,
           headers: hdrs,
-          credentials: 'include',
+          credentials: 'include'
         })
-      } catch (fetchError: any) {
+      } catch (fetchError: unknown) {
+        const err = fetchError as { data?: ApiResponse<T>, statusMessage?: string, statusCode?: number, status?: number, message?: string }
         // $fetch puts the response body in fetchError.data
-        const body: ApiResponse<T> | undefined = fetchError?.data
+        const body: ApiResponse<T> | undefined = err?.data
         if (body && typeof body === 'object' && 'status' in body) {
           throw new ApiError(
-            body.message || fetchError?.statusMessage || 'Request failed',
+            body.message || err?.statusMessage || 'Request failed',
             body.errors ?? null,
             body.timestamp ?? '',
-            fetchError?.statusCode
+            err?.statusCode
           )
         }
-        const isNetworkError = !fetchError?.statusCode && !fetchError?.status
+        const isNetworkError = !err?.statusCode && !err?.status
         throw new ApiError(
-          fetchError?.statusMessage || (isNetworkError ? 'Cannot connect to server. Please try again later.' : fetchError?.message) || 'Network error',
+          err?.statusMessage || (isNetworkError ? 'Cannot connect to server. Please try again later.' : err?.message) || 'Network error',
           null,
           '',
-          fetchError?.statusCode
+          err?.statusCode
         )
       }
 
@@ -132,23 +134,26 @@ export function useApi() {
     // First attempt
     try {
       return await execute(buildHeaders())
-    } catch (error: any) {
+    } catch (error: unknown) {
+      const err = error as ApiError
       // On 401, try a single silent refresh (skip auth endpoints to avoid loops)
-      if (error?.statusCode === 401 && shouldRetry(url)) {
+      if (err?.statusCode === 401 && shouldRetry(url)) {
         const ok = await doRefresh()
         if (ok) return await execute(buildHeaders())
         // refresh failed -> redirect to login
         navigateTo('/login')
       }
-      throw error
+      throw err
     }
   }
 
   async function apiStream(
     url: string,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     body: Record<string, any>,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     onEvent: (event: any) => void,
-    onError?: (error: any) => void
+    onError?: (error: unknown) => void
   ) {
     function streamHeaders(token: string | null): Record<string, string> {
       const h: Record<string, string> = { 'Content-Type': 'application/json' }
@@ -192,7 +197,7 @@ export function useApi() {
         method: 'POST',
         headers: streamHeaders(auth.accessToken.value),
         credentials: 'include',
-        body: JSON.stringify(body),
+        body: JSON.stringify(body)
       })
 
       // 401 -> try refresh once, then retry
@@ -203,7 +208,7 @@ export function useApi() {
             method: 'POST',
             headers: streamHeaders(auth.accessToken.value),
             credentials: 'include',
-            body: JSON.stringify(body),
+            body: JSON.stringify(body)
           })
         }
         if (!response.ok) {

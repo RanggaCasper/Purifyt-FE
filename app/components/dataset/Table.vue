@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import type { Dataset } from '~/stores/dataset'
+
 defineProps<{
-  datasets: any[]
+  datasets: Dataset[]
   page: number
   perPage: number
   deleteLoading: number | null
@@ -20,12 +22,24 @@ const emit = defineEmits<{
       <table class="w-full text-sm">
         <thead>
           <tr class="border-b border-default bg-elevated">
-            <th class="px-4 py-3 text-left font-medium text-muted w-10">#</th>
-            <th class="px-4 py-3 text-left font-medium text-muted">{{ $t('datasets.tableName') }}</th>
-            <th class="px-4 py-3 text-left font-medium text-muted">{{ $t('datasets.tableSource') }}</th>
-            <th class="px-4 py-3 text-right font-medium text-muted">{{ $t('datasets.tableComments') }}</th>
-            <th class="px-4 py-3 text-left font-medium text-muted whitespace-nowrap">{{ $t('datasets.tableCreated') }}</th>
-            <th class="px-4 py-3 text-center font-medium text-muted">{{ $t('common.actions') }}</th>
+            <th class="px-4 py-3 text-left font-medium text-muted w-10">
+              #
+            </th>
+            <th class="px-4 py-3 text-left font-medium text-muted">
+              {{ $t('datasets.tableName') }}
+            </th>
+            <th class="px-4 py-3 text-left font-medium text-muted">
+              {{ $t('datasets.tableSource') }}
+            </th>
+            <th class="px-4 py-3 text-right font-medium text-muted">
+              {{ $t('datasets.tableComments') }}
+            </th>
+            <th class="px-4 py-3 text-left font-medium text-muted whitespace-nowrap">
+              {{ $t('datasets.tableCreated') }}
+            </th>
+            <th class="px-4 py-3 text-center font-medium text-muted">
+              {{ $t('common.actions') }}
+            </th>
           </tr>
         </thead>
         <tbody class="divide-y divide-default">
@@ -38,11 +52,17 @@ const emit = defineEmits<{
               {{ (page - 1) * perPage + idx + 1 }}
             </td>
             <td class="px-4 py-3 max-w-xs">
-              <NuxtLink :to="`/datasets/${dataset.id}`" class="group block">
+              <NuxtLink
+                :to="`/datasets/${dataset.id}`"
+                class="group block"
+              >
                 <p class="font-medium text-highlighted group-hover:text-primary-500 transition-colors truncate">
                   {{ dataset.name }}
                 </p>
-                <p v-if="dataset.description" class="text-xs text-muted truncate mt-0.5">
+                <p
+                  v-if="dataset.description"
+                  class="text-xs text-muted truncate mt-0.5"
+                >
                   {{ dataset.description }}
                 </p>
               </NuxtLink>
@@ -60,7 +80,7 @@ const emit = defineEmits<{
                 new Date(dataset.created_at).toLocaleDateString('id-ID', {
                   day: '2-digit',
                   month: 'short',
-                  year: 'numeric',
+                  year: 'numeric'
                 })
               }}
             </td>
@@ -95,10 +115,16 @@ const emit = defineEmits<{
         :key="dataset.id"
         class="px-4 py-4 flex items-center justify-between hover:bg-elevated/50 transition-colors"
       >
-        <NuxtLink :to="`/datasets/${dataset.id}`" class="flex-1 min-w-0">
+        <NuxtLink
+          :to="`/datasets/${dataset.id}`"
+          class="flex-1 min-w-0"
+        >
           <div class="flex items-center gap-3">
             <div class="w-9 h-9 bg-blue-100 dark:bg-blue-950 rounded-lg flex items-center justify-center shrink-0">
-              <UIcon name="i-lucide-database" class="text-blue-600 dark:text-blue-400" />
+              <UIcon
+                name="i-lucide-database"
+                class="text-blue-600 dark:text-blue-400"
+              />
             </div>
             <div class="min-w-0">
               <p class="text-sm font-medium text-highlighted truncate">{{ dataset.name }}</p>

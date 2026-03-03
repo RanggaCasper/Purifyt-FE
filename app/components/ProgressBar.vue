@@ -1,15 +1,15 @@
 <script setup lang="ts">
 defineProps<{
-  current: number;
-  total: number;
-  message?: string;
-}>();
+  current: number
+  total: number
+  message?: string
+}>()
 
 const percentage = computed(() => {
-  const props = getCurrentInstance()?.props as any;
-  if (!props || props.total === 0) return 0;
-  return Math.round((props.current / props.total) * 100);
-});
+  const props = getCurrentInstance()?.props as Record<string, unknown>
+  if (!props || props.total === 0) return 0
+  return Math.round(((props.current as number) / (props.total as number)) * 100)
+})
 </script>
 
 <template>
@@ -24,6 +24,8 @@ const percentage = computed(() => {
         :style="{ width: `${percentage}%` }"
       />
     </div>
-    <p class="text-xs text-muted">{{ current }} / {{ total }}</p>
+    <p class="text-xs text-muted">
+      {{ current }} / {{ total }}
+    </p>
   </div>
 </template>

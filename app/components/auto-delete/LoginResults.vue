@@ -21,13 +21,18 @@ const { getLogMeta } = useLogMeta()
     >
       <div class="flex items-center gap-3 mb-3">
         <div class="w-10 h-10 bg-green-100 dark:bg-green-950 rounded-lg flex items-center justify-center">
-          <UIcon name="i-lucide-check-circle" class="text-green-600 dark:text-green-400 text-xl" />
+          <UIcon
+            name="i-lucide-check-circle"
+            class="text-green-600 dark:text-green-400 text-xl"
+          />
         </div>
         <div>
           <h3 class="font-medium text-sm text-highlighted">
             {{ $t('autoDelete.loginSuccess') }}
           </h3>
-          <p class="text-xs text-muted">{{ $t('autoDelete.cookieSaved') }}</p>
+          <p class="text-xs text-muted">
+            {{ $t('autoDelete.cookieSaved') }}
+          </p>
         </div>
       </div>
       <div class="space-y-2 text-sm">
@@ -53,14 +58,17 @@ const { getLogMeta } = useLogMeta()
     <!-- Empty state -->
     <div
       v-if="
-        !autoDeleteStore.loginRunning &&
-        !autoDeleteStore.loginResult &&
-        !autoDeleteStore.loginError &&
-        autoDeleteStore.loginLogs.length === 0
+        !autoDeleteStore.loginRunning
+          && !autoDeleteStore.loginResult
+          && !autoDeleteStore.loginError
+          && autoDeleteStore.loginLogs.length === 0
       "
       class="bg-default border border-default rounded-xl p-12 flex flex-col items-center gap-3 text-center"
     >
-      <UIcon name="i-lucide-log-in" class="text-4xl text-dimmed" />
+      <UIcon
+        name="i-lucide-log-in"
+        class="text-4xl text-dimmed"
+      />
       <h3 class="text-sm font-medium text-highlighted">
         {{ $t('autoDelete.loginWithGoogle') }}
       </h3>

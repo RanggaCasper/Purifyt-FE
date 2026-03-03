@@ -1,45 +1,46 @@
 <script setup lang="ts">
 definePageMeta({
-  layout: "auth",
-  title: "Register",
-  middleware: ["guest"],
-});
+  layout: 'auth',
+  title: 'Register',
+  middleware: ['guest']
+})
 
-const { register, loading: authLoading } = useAuth();
-const toast = useToast();
-const { t } = useI18n();
+const { register, loading: _authLoading } = useAuth()
+const toast = useToast()
+const { t } = useI18n()
 
 const form = reactive({
-  username: "",
-  email: "",
-  password: "",
-  confirmPassword: "",
-});
-const loading = ref(false);
-const error = ref("");
+  username: '',
+  email: '',
+  password: '',
+  confirmPassword: ''
+})
+const loading = ref(false)
+const error = ref('')
 
 async function handleRegister() {
-  error.value = "";
+  error.value = ''
 
   if (form.password !== form.confirmPassword) {
-    error.value = t("auth.passwordsMismatch");
-    return;
+    error.value = t('auth.passwordsMismatch')
+    return
   }
 
-  loading.value = true;
+  loading.value = true
 
   try {
     await register({
       username: form.username,
       email: form.email,
-      password: form.password,
-    });
-    toast.add({ title: t("auth.accountCreated"), color: "success" });
-    navigateTo("/login");
-  } catch (e: any) {
-    error.value = e?.message || t("auth.registrationFailed");
+      password: form.password
+    })
+    toast.add({ title: t('auth.accountCreated'), color: 'success' })
+    navigateTo('/login')
+  } catch (e: unknown) {
+    const err = e as Error
+    error.value = err?.message || t('auth.registrationFailed')
   } finally {
-    loading.value = false;
+    loading.value = false
   }
 }
 </script>
@@ -47,7 +48,11 @@ async function handleRegister() {
 <template>
   <div class="w-full">
     <div class="text-center mb-8">
-      <img src="/logo.png" alt="Purifyt" class="h-14 w-auto mx-auto mb-4" />
+      <img
+        src="/logo.png"
+        alt="Purifyt"
+        class="h-14 w-auto mx-auto mb-4"
+      >
       <h1 class="text-2xl font-semibold text-highlighted">
         {{ $t("auth.createAccount") }}
       </h1>
@@ -56,8 +61,16 @@ async function handleRegister() {
       </p>
     </div>
 
-    <form @submit.prevent="handleRegister" class="space-y-4">
-      <UAlert v-if="error" color="error" :title="error" icon="i-lucide-alert-circle" />
+    <form
+      class="space-y-4"
+      @submit.prevent="handleRegister"
+    >
+      <UAlert
+        v-if="error"
+        color="error"
+        :title="error"
+        icon="i-lucide-alert-circle"
+      />
 
       <UFormField :label="$t('common.username')">
         <UInput
@@ -119,7 +132,10 @@ async function handleRegister() {
 
     <p class="text-center text-sm text-muted mt-6">
       {{ $t("auth.haveAccount") }}
-      <NuxtLink to="/login" class="text-blue-500 hover:text-blue-600 font-medium">
+      <NuxtLink
+        to="/login"
+        class="text-blue-500 hover:text-blue-600 font-medium"
+      >
         {{ $t("auth.signIn") }}
       </NuxtLink>
     </p>

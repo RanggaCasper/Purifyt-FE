@@ -3,7 +3,7 @@ const labelingStore = useLabelingStore()
 
 const batchStats = computed(() => {
   const total = labelingStore.batchResults.length
-  const judi = labelingStore.batchResults.filter((r) => r.label === 1).length
+  const judi = labelingStore.batchResults.filter(r => r.label === 1).length
   return { total, judi, normal: total - judi }
 })
 </script>
@@ -11,9 +11,24 @@ const batchStats = computed(() => {
 <template>
   <template v-if="labelingStore.batchResults.length > 0">
     <div class="grid grid-cols-3 gap-3">
-      <StatCard :title="$t('common.total')" :value="batchStats.total" icon="i-lucide-list" color="blue" />
-      <StatCard :title="$t('common.judi')" :value="batchStats.judi" icon="i-lucide-alert-triangle" color="red" />
-      <StatCard :title="$t('common.normal')" :value="batchStats.normal" icon="i-lucide-check-circle" color="green" />
+      <StatCard
+        :title="$t('common.total')"
+        :value="batchStats.total"
+        icon="i-lucide-list"
+        color="blue"
+      />
+      <StatCard
+        :title="$t('common.judi')"
+        :value="batchStats.judi"
+        icon="i-lucide-alert-triangle"
+        color="red"
+      />
+      <StatCard
+        :title="$t('common.normal')"
+        :value="batchStats.normal"
+        icon="i-lucide-check-circle"
+        color="green"
+      />
     </div>
 
     <DataCard :empty="false">

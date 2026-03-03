@@ -1,9 +1,9 @@
 <script setup lang="ts">
 defineProps<{
   sourceFilter: string
-  sources: { label: string; value: string }[]
+  sources: { label: string, value: string }[]
   perPage: number
-  perPageOptions: { label: string; value: number }[]
+  perPageOptions: { label: string, value: number }[]
 }>()
 
 const emit = defineEmits<{

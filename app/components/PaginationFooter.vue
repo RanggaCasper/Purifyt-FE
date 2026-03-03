@@ -42,7 +42,10 @@ function goToPage(page: number) {
       {{ showingFrom }}–{{ showingTo }}
       {{ $t('common.of') }} {{ total }} {{ label || $t('common.items') }}
     </span>
-    <div v-if="totalPages > 1" class="flex items-center gap-1">
+    <div
+      v-if="totalPages > 1"
+      class="flex items-center gap-1"
+    >
       <UButton
         icon="i-lucide-chevron-first"
         variant="ghost"
@@ -59,8 +62,14 @@ function goToPage(page: number) {
         :disabled="currentPage <= 1"
         @click="goToPage(currentPage - 1)"
       />
-      <template v-for="p in visiblePages" :key="p">
-        <span v-if="p === -1" class="px-1 text-muted select-none">…</span>
+      <template
+        v-for="p in visiblePages"
+        :key="p"
+      >
+        <span
+          v-if="p === -1"
+          class="px-1 text-muted select-none"
+        >…</span>
         <UButton
           v-else
           :label="String(p)"

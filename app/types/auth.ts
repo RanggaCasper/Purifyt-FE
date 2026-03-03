@@ -1,8 +1,8 @@
-export interface ApiResponse<T = any> {
+export interface ApiResponse<T = unknown> {
   status: boolean
   data: T | null
   message: string | null
-  errors: any | null
+  errors: Record<string, unknown> | null
   timestamp: string
 }
 

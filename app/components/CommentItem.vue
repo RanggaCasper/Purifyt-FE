@@ -1,19 +1,22 @@
 <script setup lang="ts">
-const props = defineProps<{
-  text: string;
-  cleanText?: string;
-  author?: string;
-  label?: number | null;
-  confidence?: { normal: number; judi: number };
-  showBadge?: boolean;
-}>();
+const _props = defineProps<{
+  text: string
+  cleanText?: string
+  author?: string
+  label?: number | null
+  confidence?: { normal: number, judi: number }
+  showBadge?: boolean
+}>()
 </script>
 
 <template>
   <div class="px-4 py-3 hover:bg-elevated/50 transition-colors">
     <div class="flex items-start justify-between gap-3 min-w-0">
       <div class="flex-1 min-w-0 overflow-hidden">
-        <div v-if="author" class="flex items-center gap-1.5 mb-1">
+        <div
+          v-if="author"
+          class="flex items-center gap-1.5 mb-1"
+        >
           <UIcon
             name="i-lucide-user"
             class="text-xs text-muted shrink-0"

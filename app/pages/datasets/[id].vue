@@ -1,6 +1,6 @@
 <script setup lang="ts">
 definePageMeta({
-  title: 'Dataset Detail',
+  title: 'Dataset Detail'
 })
 
 const route = useRoute()
@@ -25,7 +25,7 @@ const commentPerPageOptions = computed(() => [
   { label: '25 / ' + t('common.page').toLowerCase(), value: 25 },
   { label: t('datasets.perPage50'), value: 50 },
   { label: t('datasets.perPage100'), value: 100 },
-  { label: '250 / ' + t('common.page').toLowerCase(), value: 250 },
+  { label: '250 / ' + t('common.page').toLowerCase(), value: 250 }
 ])
 
 const selectedIds = shallowRef<Set<number>>(new Set())
@@ -35,23 +35,27 @@ const inlineLabelLoading = ref<number | null>(null)
 const selectedCount = computed(() => selectedIds.value.size)
 const allOnPageSelected = computed(
   () =>
-    pagedComments.value.length > 0 &&
-    pagedComments.value.every((c) => selectedIds.value.has(c.id))
+    pagedComments.value.length > 0
+    && pagedComments.value.every(c => selectedIds.value.has(c.id))
 )
 
 function toggleSelectAll() {
   const next = new Set(selectedIds.value)
   if (allOnPageSelected.value) {
-    pagedComments.value.forEach((c) => next.delete(c.id))
+    pagedComments.value.forEach(c => next.delete(c.id))
   } else {
-    pagedComments.value.forEach((c) => next.add(c.id))
+    pagedComments.value.forEach(c => next.add(c.id))
   }
   selectedIds.value = next
 }
 
 function toggleSelect(id: number) {
   const next = new Set(selectedIds.value)
-  next.has(id) ? next.delete(id) : next.add(id)
+  if (next.has(id)) {
+    next.delete(id)
+  } else {
+    next.add(id)
+  }
   selectedIds.value = next
 }
 
@@ -75,7 +79,7 @@ const stats = computed(() => {
     total: datasetStore.commentTotal || all.length,
     judi,
     normal,
-    unlabeled,
+    unlabeled
   }
 })
 
@@ -85,13 +89,13 @@ const filteredComments = computed(() => {
   const q = searchQuery.value.trim().toLowerCase()
   if (q) {
     list = list.filter(
-      (c) => c.comment.toLowerCase().includes(q) || c.author.toLowerCase().includes(q)
+      c => c.comment.toLowerCase().includes(q) || c.author.toLowerCase().includes(q)
     )
   }
-  if (labelFilter.value === 'judi') return list.filter((c) => effectiveLabel(c) === 1)
-  if (labelFilter.value === 'normal') return list.filter((c) => effectiveLabel(c) === 0)
+  if (labelFilter.value === 'judi') return list.filter(c => effectiveLabel(c) === 1)
+  if (labelFilter.value === 'normal') return list.filter(c => effectiveLabel(c) === 0)
   if (labelFilter.value === 'unlabeled')
-    return list.filter((c) => c.label === null || c.label === undefined)
+    return list.filter(c => c.label === null || c.label === undefined)
   return list
 })
 
@@ -109,7 +113,7 @@ async function handleInlineLabel(commentId: number, label: 0 | 1) {
   inlineLabelLoading.value = commentId
   try {
     await labelingStore.labelComment(commentId, label)
-    const c = datasetStore.comments.find((c) => c.id === commentId)
+    const c = datasetStore.comments.find(c => c.id === commentId)
     if (c) c.label = label
     toast.add({ title: t('datasetDetail.labelUpdated'), color: 'success' })
   } catch {
@@ -123,13 +127,13 @@ async function handleBulkLabel(label: 0 | 1) {
   if (selectedIds.value.size === 0) return
   bulkLabelLoading.value = true
   try {
-    const labels = Array.from(selectedIds.value).map((comment_id) => ({
+    const labels = Array.from(selectedIds.value).map(comment_id => ({
       comment_id,
-      label,
+      label
     }))
     await labelingStore.bulkLabelComments(datasetId.value, labels)
     for (const id of selectedIds.value) {
-      const c = datasetStore.comments.find((c) => c.id === id)
+      const c = datasetStore.comments.find(c => c.id === id)
       if (c) c.label = label
     }
     toast.add({
@@ -137,7 +141,7 @@ async function handleBulkLabel(label: 0 | 1) {
         label === 1
           ? t('datasetDetail.bulkLabeledJudi', { n: labels.length })
           : t('datasetDetail.bulkLabeledNormal', { n: labels.length }),
-      color: 'success',
+      color: 'success'
     })
     clearSelection()
   } catch {
@@ -235,10 +239,30 @@ onMounted(() => loadData())
 
     <!-- Stats -->
     <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
-      <StatCard :title="$t('common.total')" :value="stats.total" icon="i-lucide-message-square" color="blue" />
-      <StatCard :title="$t('common.judi')" :value="stats.judi" icon="i-lucide-alert-triangle" color="red" />
-      <StatCard :title="$t('common.normal')" :value="stats.normal" icon="i-lucide-check-circle" color="green" />
-      <StatCard :title="$t('common.predict')" :value="stats.unlabeled" icon="i-lucide-help-circle" color="yellow" />
+      <StatCard
+        :title="$t('common.total')"
+        :value="stats.total"
+        icon="i-lucide-message-square"
+        color="blue"
+      />
+      <StatCard
+        :title="$t('common.judi')"
+        :value="stats.judi"
+        icon="i-lucide-alert-triangle"
+        color="red"
+      />
+      <StatCard
+        :title="$t('common.normal')"
+        :value="stats.normal"
+        icon="i-lucide-check-circle"
+        color="green"
+      />
+      <StatCard
+        :title="$t('common.predict')"
+        :value="stats.unlabeled"
+        icon="i-lucide-help-circle"
+        color="yellow"
+      />
     </div>
 
     <!-- Search & Filter -->
@@ -263,7 +287,11 @@ onMounted(() => loadData())
       <!-- Summary bar -->
       <div class="px-4 py-3 border-b border-default flex flex-wrap items-center justify-between gap-3">
         <span class="text-sm text-muted flex items-center gap-2">
-          <UIcon v-if="commentsLoading" name="i-lucide-loader-circle" class="animate-spin" />
+          <UIcon
+            v-if="commentsLoading"
+            name="i-lucide-loader-circle"
+            class="animate-spin"
+          />
           <template v-if="labelFilter !== 'all'">{{ filteredComments.length }} {{ $t('common.filtered') }} ·</template>
           {{ datasetStore.commentTotal }} {{ $t('datasetDetail.totalComments') }}
           <template v-if="totalCommentPages > 1">· Page {{ commentPage }}/{{ totalCommentPages }}</template>

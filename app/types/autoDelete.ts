@@ -1,4 +1,4 @@
-// SSE Event Payloads 
+// SSE Event Payloads
 
 export interface AutoDeleteStatusEvent {
   type: 'status'
@@ -61,16 +61,16 @@ export interface AutoDeleteErrorEvent {
   message: string
 }
 
-export type AutoDeleteEvent =
-  | AutoDeleteStatusEvent
-  | AutoDeleteCommentEvent
-  | AutoDeleteJudiEvent
-  | AutoDeleteDeleteEvent
-  | AutoDeleteLoginDoneEvent
-  | AutoDeleteScanDoneEvent
-  | AutoDeleteErrorEvent
+export type AutoDeleteEvent
+  = | AutoDeleteStatusEvent
+    | AutoDeleteCommentEvent
+    | AutoDeleteJudiEvent
+    | AutoDeleteDeleteEvent
+    | AutoDeleteLoginDoneEvent
+    | AutoDeleteScanDoneEvent
+    | AutoDeleteErrorEvent
 
-// Cookie / Account 
+// Cookie / Account
 
 export interface CookieAccount {
   id: number
@@ -92,7 +92,7 @@ export interface CookieAccountDetail extends CookieAccount {
   }
 }
 
-// Request Payloads 
+// Request Payloads
 
 export interface LoginPayload {
   email: string
@@ -121,7 +121,7 @@ export interface FetchCommentsPayload {
   headless?: boolean
 }
 
-// Scan result (accumulated from SSE) 
+// Scan result (accumulated from SSE)
 
 export interface ScannedComment {
   comment_id: string

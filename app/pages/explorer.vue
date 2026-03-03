@@ -1,6 +1,6 @@
 <script setup lang="ts">
 definePageMeta({
-  title: 'Explorer',
+  title: 'Explorer'
 })
 
 const mode = ref<'video' | 'channel'>('video')
@@ -8,7 +8,10 @@ const mode = ref<'video' | 'channel'>('video')
 
 <template>
   <div>
-    <PageHeader :title="$t('explorer.title')" :description="$t('explorer.desc')" />
+    <PageHeader
+      :title="$t('explorer.title')"
+      :description="$t('explorer.desc')"
+    />
 
     <!-- Mode toggle -->
     <div class="flex gap-2 mb-6">

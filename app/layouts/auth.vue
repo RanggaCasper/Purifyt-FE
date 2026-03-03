@@ -2,8 +2,14 @@
   <div class="min-h-screen bg-default flex flex-col">
     <!-- Back to landing -->
     <header class="px-6 py-4 flex items-center">
-      <NuxtLink to="/" class="flex items-center gap-2 text-muted hover:text-highlighted transition-colors">
-        <UIcon name="i-lucide-arrow-left" class="text-base" />
+      <NuxtLink
+        to="/"
+        class="flex items-center gap-2 text-muted hover:text-highlighted transition-colors"
+      >
+        <UIcon
+          name="i-lucide-arrow-left"
+          class="text-base"
+        />
         <span class="text-sm font-medium">{{ $t('common.backToHome') }}</span>
       </NuxtLink>
     </header>

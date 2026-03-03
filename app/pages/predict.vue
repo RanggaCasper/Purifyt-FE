@@ -1,6 +1,6 @@
 <script setup lang="ts">
 definePageMeta({
-  title: 'Predict',
+  title: 'Predict'
 })
 
 const labelingStore = useLabelingStore()
@@ -9,7 +9,10 @@ const mode = ref<'single' | 'batch'>('single')
 
 <template>
   <div>
-    <PageHeader :title="$t('predict.title')" :description="$t('predict.desc')" />
+    <PageHeader
+      :title="$t('predict.title')"
+      :description="$t('predict.desc')"
+    />
 
     <!-- Mode toggle -->
     <div class="flex gap-2 mb-6">
@@ -44,14 +47,21 @@ const mode = ref<'single' | 'batch'>('single')
         <!-- Empty state -->
         <div
           v-if="
-            (mode === 'single' && !labelingStore.singleResult && !labelingStore.loading) ||
-            (mode === 'batch' && labelingStore.batchResults.length === 0 && !labelingStore.loading)
+            (mode === 'single' && !labelingStore.singleResult && !labelingStore.loading)
+              || (mode === 'batch' && labelingStore.batchResults.length === 0 && !labelingStore.loading)
           "
           class="bg-default border border-default rounded-xl p-12 flex flex-col items-center gap-3 text-center"
         >
-          <UIcon name="i-lucide-sparkles" class="text-4xl text-dimmed" />
-          <h3 class="text-sm font-medium text-highlighted">{{ $t('predict.readyTitle') }}</h3>
-          <p class="text-xs text-muted max-w-sm">{{ $t('predict.readyDesc') }}</p>
+          <UIcon
+            name="i-lucide-sparkles"
+            class="text-4xl text-dimmed"
+          />
+          <h3 class="text-sm font-medium text-highlighted">
+            {{ $t('predict.readyTitle') }}
+          </h3>
+          <p class="text-xs text-muted max-w-sm">
+            {{ $t('predict.readyDesc') }}
+          </p>
         </div>
       </div>
     </div>

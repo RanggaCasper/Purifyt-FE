@@ -19,7 +19,10 @@ defineProps<{
   >
     <div class="flex items-center gap-3 mb-2">
       <div :class="['w-8 h-8 rounded-lg flex items-center justify-center', iconBg]">
-        <UIcon :name="icon" :class="iconColor" />
+        <UIcon
+          :name="icon"
+          :class="iconColor"
+        />
       </div>
       <h3 :class="['font-medium text-highlighted transition-colors', hoverText]">
         {{ title }}

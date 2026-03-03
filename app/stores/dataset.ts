@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { useApi, type PaginatedResponse } from '~/composables/useApi'
 
-interface Dataset {
+export interface Dataset {
   id: number
   name: string
   description: string | null
@@ -12,7 +12,7 @@ interface Dataset {
   comment_count: number
 }
 
-interface Comment {
+export interface Comment {
   id: number
   dataset_id: number
   comment: string
@@ -61,12 +61,8 @@ export const useDatasetStore = defineStore('dataset', {
   actions: {
     async fetchAllDatasets() {
       const { apiFetch } = useApi()
-      try {
-        const result = await apiFetch<PaginatedResponse<Dataset>>('/api/v1/datasets/?page=1&per_page=9999')
-        this.allDatasets = result.items
-      } catch (error) {
-        throw error
-      }
+      const result = await apiFetch<PaginatedResponse<Dataset>>('/api/v1/datasets/?page=1&per_page=9999')
+      this.allDatasets = result.items
     },
 
     async fetchDatasets(page = 1, perPage = 20, source?: string) {
@@ -83,8 +79,6 @@ export const useDatasetStore = defineStore('dataset', {
         this.datasetPage = result.page
         this.datasetPerPage = result.per_page
         this.datasetTotalPages = result.total_pages
-      } catch (error) {
-        throw error
       } finally {
         this.loading = false
       }
@@ -96,8 +90,6 @@ export const useDatasetStore = defineStore('dataset', {
 
       try {
         this.currentDataset = await apiFetch<Dataset>(`/api/v1/datasets/${id}`)
-      } catch (error) {
-        throw error
       } finally {
         this.loading = false
       }
@@ -106,32 +98,24 @@ export const useDatasetStore = defineStore('dataset', {
     async fetchComments(datasetId: number) {
       const { apiFetch } = useApi()
 
-      try {
-        // Fetch all comments at once for client-side pagination/search/filter
-        const params = new URLSearchParams({ page: '1', per_page: '99999' })
-        const result = await apiFetch<PaginatedResponse<Comment>>(
-          `/api/v1/datasets/${datasetId}/comments?${params}`
-        )
-        this.comments = result.items.map((c) => ({
-          ...c,
-          label: c.label !== null && c.label !== undefined ? Number(c.label) : null,
-        }))
-        this.commentTotal = result.total
-      } catch (error) {
-        throw error
-      }
+      // Fetch all comments at once for client-side pagination/search/filter
+      const params = new URLSearchParams({ page: '1', per_page: '99999' })
+      const result = await apiFetch<PaginatedResponse<Comment>>(
+        `/api/v1/datasets/${datasetId}/comments?${params}`
+      )
+      this.comments = result.items.map(c => ({
+        ...c,
+        label: c.label !== null && c.label !== undefined ? Number(c.label) : null
+      }))
+      this.commentTotal = result.total
     },
 
     async deleteDataset(id: number) {
       const { apiFetch } = useApi()
 
-      try {
-        await apiFetch(`/api/v1/datasets/${id}`, { method: 'DELETE' })
-        this.datasets = this.datasets.filter(d => d.id !== id)
-        return true
-      } catch (error) {
-        throw error
-      }
+      await apiFetch(`/api/v1/datasets/${id}`, { method: 'DELETE' })
+      this.datasets = this.datasets.filter(d => d.id !== id)
+      return true
     }
   }
 })

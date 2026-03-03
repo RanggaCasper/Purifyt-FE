@@ -14,10 +14,10 @@ const { getLogMeta } = useLogMeta()
       :progress="
         explorerStore.labelProgress
           ? {
-              current: explorerStore.labelProgress.labeled,
-              total: explorerStore.labelProgress.total,
-              label: $t('explorer.labelingProgress'),
-            }
+            current: explorerStore.labelProgress.labeled,
+            total: explorerStore.labelProgress.total,
+            label: $t('explorer.labelingProgress')
+          }
           : null
       "
       :log-meta="(type: string) => getLogMeta(type)"
@@ -28,14 +28,24 @@ const { getLogMeta } = useLogMeta()
       v-if="explorerStore.isRunning && explorerStore.logs.length === 0"
       class="bg-default border border-default rounded-xl p-8 flex flex-col items-center gap-3"
     >
-      <UIcon name="i-lucide-loader-circle" class="text-2xl text-blue-500 animate-spin" />
-      <p class="text-sm text-muted">{{ $t('explorer.startingAnalysis') }}</p>
+      <UIcon
+        name="i-lucide-loader-circle"
+        class="text-2xl text-blue-500 animate-spin"
+      />
+      <p class="text-sm text-muted">
+        {{ $t('explorer.startingAnalysis') }}
+      </p>
     </div>
 
     <!-- Final result stats -->
-    <div v-if="explorerStore.result" class="bg-default border border-default rounded-xl p-5">
+    <div
+      v-if="explorerStore.result"
+      class="bg-default border border-default rounded-xl p-5"
+    >
       <div class="flex items-center justify-between mb-4">
-        <h3 class="font-medium text-sm text-highlighted">{{ $t('explorer.result') }}</h3>
+        <h3 class="font-medium text-sm text-highlighted">
+          {{ $t('explorer.result') }}
+        </h3>
         <UButton
           v-if="explorerStore.datasetId"
           :to="`/datasets/${explorerStore.datasetId}`"
@@ -48,7 +58,10 @@ const { getLogMeta } = useLogMeta()
       </div>
 
       <div class="flex items-center gap-2 text-sm mb-4">
-        <UIcon name="i-lucide-video" class="text-blue-500 shrink-0" />
+        <UIcon
+          name="i-lucide-video"
+          class="text-blue-500 shrink-0"
+        />
         <span class="font-medium text-highlighted truncate">{{ explorerStore.result.title }}</span>
       </div>
 

@@ -32,8 +32,6 @@ export const useLabelingStore = defineStore('labeling', {
           method: 'POST',
           body: { text }
         })
-      } catch (error) {
-        throw error
       } finally {
         this.loading = false
       }
@@ -48,8 +46,6 @@ export const useLabelingStore = defineStore('labeling', {
           method: 'POST',
           body: { texts }
         })
-      } catch (error) {
-        throw error
       } finally {
         this.loading = false
       }
@@ -64,8 +60,6 @@ export const useLabelingStore = defineStore('labeling', {
           method: 'POST'
         })
         return true
-      } catch (error) {
-        throw error
       } finally {
         this.loading = false
       }
@@ -79,7 +73,7 @@ export const useLabelingStore = defineStore('labeling', {
       })
     },
 
-    async bulkLabelComments(datasetId: number, labels: { comment_id: number; label: 0 | 1 }[]) {
+    async bulkLabelComments(datasetId: number, labels: { comment_id: number, label: 0 | 1 }[]) {
       const { apiFetch } = useApi()
       this.loading = true
       try {
@@ -87,8 +81,6 @@ export const useLabelingStore = defineStore('labeling', {
           method: 'PATCH',
           body: { labels: labels.map(l => ({ comment_id: l.comment_id, label: String(l.label) })) }
         })
-      } catch (error) {
-        throw error
       } finally {
         this.loading = false
       }

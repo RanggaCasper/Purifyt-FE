@@ -7,20 +7,20 @@ const scanForm = reactive({
   videoId: '',
   email: '',
   threshold: 0.7,
-  headless: true,
+  headless: true
 })
 
 const accountOptions = computed(() =>
-  autoDeleteStore.accounts.map((a) => ({
+  autoDeleteStore.accounts.map(a => ({
     label: `${a.email} (${a.channel_name})`,
-    value: a.email,
+    value: a.email
   }))
 )
 
 function extractVideoId(input: string): string {
   const patterns = [
     /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([a-zA-Z0-9_-]{11})/,
-    /^[a-zA-Z0-9_-]{11}$/,
+    /^[a-zA-Z0-9_-]{11}$/
   ]
   for (const p of patterns) {
     const match = input.match(p)
@@ -33,7 +33,7 @@ async function handleScan(preview = false) {
   if (!scanForm.videoId || !scanForm.email) {
     toast.add({
       title: t('autoDelete.enterVideoId'),
-      color: 'warning',
+      color: 'warning'
     })
     return
   }
@@ -43,7 +43,7 @@ async function handleScan(preview = false) {
       video_id: videoId,
       email: scanForm.email,
       threshold: scanForm.threshold,
-      headless: scanForm.headless,
+      headless: scanForm.headless
     },
     preview
   )
@@ -54,12 +54,12 @@ async function handleScan(preview = false) {
     if (preview) {
       toast.add({
         title: t('autoDelete.previewDone', { detected: r.detected, total: r.scanned }),
-        color: 'success',
+        color: 'success'
       })
     } else {
       toast.add({
         title: t('autoDelete.scanComplete', { deleted: r.deleted, total: r.scanned }),
-        color: 'success',
+        color: 'success'
       })
     }
   }
@@ -84,7 +84,10 @@ async function handleScan(preview = false) {
       />
     </div>
 
-    <form @submit.prevent="handleScan(false)" class="space-y-4">
+    <form
+      class="space-y-4"
+      @submit.prevent="handleScan(false)"
+    >
       <UFormField :label="$t('autoDelete.videoUrlLabel')">
         <UInput
           v-model="scanForm.videoId"
@@ -101,16 +104,23 @@ async function handleScan(preview = false) {
           :disabled="autoDeleteStore.accountsLoading || accountOptions.length === 0"
           class="w-full h-10 rounded-md border border-default bg-default text-sm px-3 text-highlighted focus:outline-none focus:ring-2 focus:ring-primary-500 disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          <option value="" disabled>
+          <option
+            value=""
+            disabled
+          >
             {{
               autoDeleteStore.accountsLoading
                 ? $t('autoDelete.loadingAccounts')
                 : accountOptions.length === 0
-                ? $t('autoDelete.noAccountsAvailable')
-                : $t('autoDelete.selectAccount')
+                  ? $t('autoDelete.noAccountsAvailable')
+                  : $t('autoDelete.selectAccount')
             }}
           </option>
-          <option v-for="opt in accountOptions" :key="opt.value" :value="opt.value">
+          <option
+            v-for="opt in accountOptions"
+            :key="opt.value"
+            :value="opt.value"
+          >
             {{ opt.label }}
           </option>
         </select>
@@ -125,7 +135,7 @@ async function handleScan(preview = false) {
             max="1"
             step="0.05"
             class="flex-1 accent-blue-500"
-          />
+          >
           <span class="text-sm font-medium text-highlighted w-12 text-right tabular-nums">
             {{ scanForm.threshold.toFixed(2) }}
           </span>
@@ -182,9 +192,9 @@ async function handleScan(preview = false) {
         />
         <UButton
           v-if="
-            autoDeleteStore.scanResult ||
-            autoDeleteStore.scanError ||
-            autoDeleteStore.scanLogs.length > 0
+            autoDeleteStore.scanResult
+              || autoDeleteStore.scanError
+              || autoDeleteStore.scanLogs.length > 0
           "
           :label="$t('common.reset')"
           variant="outline"
