@@ -26,38 +26,80 @@ definePageMeta({
     <!-- Content -->
     <section class="pb-20 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
       <div class="bg-default border border-default rounded-2xl px-6 py-6">
-        <h2 class="text-lg font-bold text-highlighted mb-3">{{ $t('terms.acceptTitle') }}</h2>
-        <p class="text-sm text-muted leading-relaxed">{{ $t('terms.acceptDesc') }}</p>
+        <h2 class="text-lg font-bold text-highlighted mb-3">
+          {{ $t('terms.acceptTitle') }}
+        </h2>
+        <p class="text-sm text-muted leading-relaxed">
+          {{ $t('terms.acceptDesc') }}
+        </p>
       </div>
 
       <div class="bg-default border border-default rounded-2xl px-6 py-6">
-        <h2 class="text-lg font-bold text-highlighted mb-3">{{ $t('terms.serviceTitle') }}</h2>
-        <p class="text-sm text-muted leading-relaxed">{{ $t('terms.serviceDesc') }}</p>
+        <h2 class="text-lg font-bold text-highlighted mb-3">
+          {{ $t('terms.serviceTitle') }}
+        </h2>
+        <p class="text-sm text-muted leading-relaxed">
+          {{ $t('terms.serviceDesc') }}
+        </p>
       </div>
 
       <div class="bg-default border border-default rounded-2xl px-6 py-6">
-        <h2 class="text-lg font-bold text-highlighted mb-3">{{ $t('terms.accountTitle') }}</h2>
-        <p class="text-sm text-muted leading-relaxed">{{ $t('terms.accountDesc') }}</p>
+        <h2 class="text-lg font-bold text-highlighted mb-3">
+          {{ $t('terms.accountTitle') }}
+        </h2>
+        <p class="text-sm text-muted leading-relaxed">
+          {{ $t('terms.accountDesc') }}
+        </p>
       </div>
 
       <div class="bg-default border border-default rounded-2xl px-6 py-6">
-        <h2 class="text-lg font-bold text-highlighted mb-3">{{ $t('terms.useTitle') }}</h2>
+        <h2 class="text-lg font-bold text-highlighted mb-3">
+          {{ $t('terms.useTitle') }}
+        </h2>
         <ul class="space-y-2 text-sm text-muted">
-          <li class="flex gap-2"><UIcon name="i-lucide-check" class="text-emerald-500 mt-0.5 shrink-0" /> {{ $t('terms.useAllowed1') }}</li>
-          <li class="flex gap-2"><UIcon name="i-lucide-check" class="text-emerald-500 mt-0.5 shrink-0" /> {{ $t('terms.useAllowed2') }}</li>
-          <li class="flex gap-2"><UIcon name="i-lucide-x" class="text-red-500 mt-0.5 shrink-0" /> {{ $t('terms.useNotAllowed1') }}</li>
-          <li class="flex gap-2"><UIcon name="i-lucide-x" class="text-red-500 mt-0.5 shrink-0" /> {{ $t('terms.useNotAllowed2') }}</li>
+          <li class="flex gap-2">
+            <UIcon
+              name="i-lucide-check"
+              class="text-emerald-500 mt-0.5 shrink-0"
+            /> {{ $t('terms.useAllowed1') }}
+          </li>
+          <li class="flex gap-2">
+            <UIcon
+              name="i-lucide-check"
+              class="text-emerald-500 mt-0.5 shrink-0"
+            /> {{ $t('terms.useAllowed2') }}
+          </li>
+          <li class="flex gap-2">
+            <UIcon
+              name="i-lucide-x"
+              class="text-red-500 mt-0.5 shrink-0"
+            /> {{ $t('terms.useNotAllowed1') }}
+          </li>
+          <li class="flex gap-2">
+            <UIcon
+              name="i-lucide-x"
+              class="text-red-500 mt-0.5 shrink-0"
+            /> {{ $t('terms.useNotAllowed2') }}
+          </li>
         </ul>
       </div>
 
       <div class="bg-default border border-default rounded-2xl px-6 py-6">
-        <h2 class="text-lg font-bold text-highlighted mb-3">{{ $t('terms.disclaimerTitle') }}</h2>
-        <p class="text-sm text-muted leading-relaxed">{{ $t('terms.disclaimerDesc') }}</p>
+        <h2 class="text-lg font-bold text-highlighted mb-3">
+          {{ $t('terms.disclaimerTitle') }}
+        </h2>
+        <p class="text-sm text-muted leading-relaxed">
+          {{ $t('terms.disclaimerDesc') }}
+        </p>
       </div>
 
       <div class="bg-default border border-default rounded-2xl px-6 py-6">
-        <h2 class="text-lg font-bold text-highlighted mb-3">{{ $t('terms.changesTitle') }}</h2>
-        <p class="text-sm text-muted leading-relaxed">{{ $t('terms.changesDesc') }}</p>
+        <h2 class="text-lg font-bold text-highlighted mb-3">
+          {{ $t('terms.changesTitle') }}
+        </h2>
+        <p class="text-sm text-muted leading-relaxed">
+          {{ $t('terms.changesDesc') }}
+        </p>
       </div>
     </section>
   </div>

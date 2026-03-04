@@ -90,30 +90,62 @@ function renderMarkdown(text: string): string {
     <!-- Content -->
     <section class="pb-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Loading -->
-      <div v-if="status === 'pending'" class="text-center py-16">
-        <UIcon name="i-lucide-loader-2" class="text-3xl text-blue-500 animate-spin" />
-        <p class="mt-3 text-muted">{{ $t('download.loading') }}</p>
+      <div
+        v-if="status === 'pending'"
+        class="text-center py-16"
+      >
+        <UIcon
+          name="i-lucide-loader-2"
+          class="text-3xl text-blue-500 animate-spin"
+        />
+        <p class="mt-3 text-muted">
+          {{ $t('download.loading') }}
+        </p>
       </div>
 
       <!-- Error -->
-      <div v-else-if="error" class="text-center py-16">
-        <UIcon name="i-lucide-alert-triangle" class="text-3xl text-red-500" />
-        <p class="mt-3 text-muted">{{ $t('download.errorFetch') }}</p>
-        <UButton class="mt-4" variant="outline" icon="i-lucide-refresh-cw" @click="refresh()">
+      <div
+        v-else-if="error"
+        class="text-center py-16"
+      >
+        <UIcon
+          name="i-lucide-alert-triangle"
+          class="text-3xl text-red-500"
+        />
+        <p class="mt-3 text-muted">
+          {{ $t('download.errorFetch') }}
+        </p>
+        <UButton
+          class="mt-4"
+          variant="outline"
+          icon="i-lucide-refresh-cw"
+          @click="refresh()"
+        >
           {{ $t('download.retry') }}
         </UButton>
       </div>
 
       <!-- No releases -->
-      <div v-else-if="!releases || releases.length === 0" class="text-center py-16">
-        <UIcon name="i-lucide-package-x" class="text-4xl text-muted" />
-        <p class="mt-3 text-muted">{{ $t('download.noReleases') }}</p>
+      <div
+        v-else-if="!releases || releases.length === 0"
+        class="text-center py-16"
+      >
+        <UIcon
+          name="i-lucide-package-x"
+          class="text-4xl text-muted"
+        />
+        <p class="mt-3 text-muted">
+          {{ $t('download.noReleases') }}
+        </p>
       </div>
 
       <!-- Releases list -->
       <template v-else>
         <!-- Latest release (highlighted) -->
-        <div v-if="latestRelease" class="mb-12">
+        <div
+          v-if="latestRelease"
+          class="mb-12"
+        >
           <h2 class="text-sm font-semibold tracking-widest uppercase text-blue-500 dark:text-blue-400 mb-4">
             {{ $t('download.latestRelease') }}
           </h2>
@@ -123,15 +155,25 @@ function renderMarkdown(text: string): string {
               <div class="flex items-center justify-between flex-wrap gap-3">
                 <div class="flex items-center gap-3">
                   <div class="w-12 h-12 bg-white/15 backdrop-blur rounded-xl flex items-center justify-center">
-                    <UIcon name="i-lucide-package" class="text-2xl" />
+                    <UIcon
+                      name="i-lucide-package"
+                      class="text-2xl"
+                    />
                   </div>
                   <div>
-                    <h3 class="text-lg font-bold">{{ latestRelease.name || latestRelease.tag_name }}</h3>
-                    <p class="text-blue-100 text-sm">{{ formatDate(latestRelease.published_at) }}</p>
+                    <h3 class="text-lg font-bold">
+                      {{ latestRelease.name || latestRelease.tag_name }}
+                    </h3>
+                    <p class="text-blue-100 text-sm">
+                      {{ formatDate(latestRelease.published_at) }}
+                    </p>
                   </div>
                 </div>
                 <div class="flex items-center gap-2">
-                  <span v-if="latestRelease.prerelease" class="text-xs px-2.5 py-1 rounded-full bg-yellow-500/20 text-yellow-100 border border-yellow-400/30 font-medium">
+                  <span
+                    v-if="latestRelease.prerelease"
+                    class="text-xs px-2.5 py-1 rounded-full bg-yellow-500/20 text-yellow-100 border border-yellow-400/30 font-medium"
+                  >
                     Pre-release
                   </span>
                   <span class="text-xs px-2.5 py-1 rounded-full bg-white/15 backdrop-blur-sm border border-white/20 font-medium">
@@ -144,10 +186,17 @@ function renderMarkdown(text: string): string {
             <!-- Body -->
             <div class="px-6 py-5">
               <!-- Release notes -->
-              <div v-if="latestRelease.body" class="prose-sm mb-5" v-html="renderMarkdown(latestRelease.body)" />
+              <div
+                v-if="latestRelease.body"
+                class="prose-sm mb-5"
+                v-html="renderMarkdown(latestRelease.body)"
+              />
 
               <!-- Assets -->
-              <div v-if="getExtAsset(latestRelease)" class="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+              <div
+                v-if="getExtAsset(latestRelease)"
+                class="flex flex-col sm:flex-row items-start sm:items-center gap-3"
+              >
                 <UButton
                   :to="getExtAsset(latestRelease)!.browser_download_url"
                   external
@@ -161,7 +210,10 @@ function renderMarkdown(text: string): string {
                   {{ $t('download.installNote') }}
                 </span>
               </div>
-              <div v-else class="text-sm text-muted">
+              <div
+                v-else
+                class="text-sm text-muted"
+              >
                 <UButton
                   :to="latestRelease.html_url"
                   external
@@ -179,7 +231,10 @@ function renderMarkdown(text: string): string {
         <!-- Installation guide -->
         <div class="mb-12 bg-default border border-default rounded-2xl px-6 py-5">
           <h2 class="text-lg font-bold text-highlighted mb-4 flex items-center gap-2">
-            <UIcon name="i-lucide-book-open" class="text-blue-500" />
+            <UIcon
+              name="i-lucide-book-open"
+              class="text-blue-500"
+            />
             {{ $t('download.installTitle') }}
           </h2>
           <ol class="space-y-3 text-sm text-muted">
@@ -218,10 +273,15 @@ function renderMarkdown(text: string): string {
               class="bg-default border border-default rounded-xl px-5 py-4 flex items-center justify-between flex-wrap gap-3"
             >
               <div>
-                <h3 class="font-semibold text-highlighted text-sm">{{ rel.name || rel.tag_name }}</h3>
+                <h3 class="font-semibold text-highlighted text-sm">
+                  {{ rel.name || rel.tag_name }}
+                </h3>
                 <p class="text-xs text-muted mt-0.5">
                   {{ formatDate(rel.published_at) }}
-                  <span v-if="rel.prerelease" class="ml-2 text-yellow-500 font-medium">Pre-release</span>
+                  <span
+                    v-if="rel.prerelease"
+                    class="ml-2 text-yellow-500 font-medium"
+                  >Pre-release</span>
                 </p>
               </div>
               <div class="flex items-center gap-2">

@@ -10,7 +10,7 @@ const platforms = [
   { name: 'YouTube', icon: 'i-simple-icons-youtube', active: true },
   { name: 'Facebook', icon: 'i-simple-icons-facebook', active: false },
   { name: 'Instagram', icon: 'i-simple-icons-instagram', active: false },
-  { name: 'TikTok', icon: 'i-simple-icons-tiktok', active: false },
+  { name: 'TikTok', icon: 'i-simple-icons-tiktok', active: false }
 ]
 </script>
 
@@ -77,9 +77,15 @@ const platforms = [
                 ? 'bg-white/20 border-white/30 text-white'
                 : 'bg-white/5 border-white/10 text-white/40'"
             >
-              <UIcon :name="p.icon" class="text-sm" />
+              <UIcon
+                :name="p.icon"
+                class="text-sm"
+              />
               {{ p.name }}
-              <span v-if="!p.active" class="text-[10px] font-normal opacity-70">soon</span>
+              <span
+                v-if="!p.active"
+                class="text-[10px] font-normal opacity-70"
+              >soon</span>
             </span>
           </div>
         </div>

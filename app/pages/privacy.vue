@@ -27,46 +27,96 @@ definePageMeta({
     <section class="pb-20 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
       <!-- Overview -->
       <div class="bg-default border border-default rounded-2xl px-6 py-6">
-        <h2 class="text-lg font-bold text-highlighted mb-3">{{ $t('privacy.overviewTitle') }}</h2>
-        <p class="text-sm text-muted leading-relaxed">{{ $t('privacy.overviewDesc') }}</p>
+        <h2 class="text-lg font-bold text-highlighted mb-3">
+          {{ $t('privacy.overviewTitle') }}
+        </h2>
+        <p class="text-sm text-muted leading-relaxed">
+          {{ $t('privacy.overviewDesc') }}
+        </p>
       </div>
 
       <!-- Data we collect -->
       <div class="bg-default border border-default rounded-2xl px-6 py-6">
-        <h2 class="text-lg font-bold text-highlighted mb-3">{{ $t('privacy.collectTitle') }}</h2>
+        <h2 class="text-lg font-bold text-highlighted mb-3">
+          {{ $t('privacy.collectTitle') }}
+        </h2>
         <ul class="space-y-2 text-sm text-muted">
-          <li class="flex gap-2"><UIcon name="i-lucide-user" class="text-blue-500 mt-0.5 shrink-0" /> {{ $t('privacy.collectAccount') }}</li>
-          <li class="flex gap-2"><UIcon name="i-lucide-message-square" class="text-blue-500 mt-0.5 shrink-0" /> {{ $t('privacy.collectComments') }}</li>
-          <li class="flex gap-2"><UIcon name="i-lucide-activity" class="text-blue-500 mt-0.5 shrink-0" /> {{ $t('privacy.collectUsage') }}</li>
+          <li class="flex gap-2">
+            <UIcon
+              name="i-lucide-user"
+              class="text-blue-500 mt-0.5 shrink-0"
+            /> {{ $t('privacy.collectAccount') }}
+          </li>
+          <li class="flex gap-2">
+            <UIcon
+              name="i-lucide-message-square"
+              class="text-blue-500 mt-0.5 shrink-0"
+            /> {{ $t('privacy.collectComments') }}
+          </li>
+          <li class="flex gap-2">
+            <UIcon
+              name="i-lucide-activity"
+              class="text-blue-500 mt-0.5 shrink-0"
+            /> {{ $t('privacy.collectUsage') }}
+          </li>
         </ul>
       </div>
 
       <!-- How we use -->
       <div class="bg-default border border-default rounded-2xl px-6 py-6">
-        <h2 class="text-lg font-bold text-highlighted mb-3">{{ $t('privacy.useTitle') }}</h2>
+        <h2 class="text-lg font-bold text-highlighted mb-3">
+          {{ $t('privacy.useTitle') }}
+        </h2>
         <ul class="space-y-2 text-sm text-muted">
-          <li class="flex gap-2"><UIcon name="i-lucide-shield-check" class="text-blue-500 mt-0.5 shrink-0" /> {{ $t('privacy.useDetect') }}</li>
-          <li class="flex gap-2"><UIcon name="i-lucide-bar-chart-3" class="text-blue-500 mt-0.5 shrink-0" /> {{ $t('privacy.useImprove') }}</li>
-          <li class="flex gap-2"><UIcon name="i-lucide-lock" class="text-blue-500 mt-0.5 shrink-0" /> {{ $t('privacy.useAuth') }}</li>
+          <li class="flex gap-2">
+            <UIcon
+              name="i-lucide-shield-check"
+              class="text-blue-500 mt-0.5 shrink-0"
+            /> {{ $t('privacy.useDetect') }}
+          </li>
+          <li class="flex gap-2">
+            <UIcon
+              name="i-lucide-bar-chart-3"
+              class="text-blue-500 mt-0.5 shrink-0"
+            /> {{ $t('privacy.useImprove') }}
+          </li>
+          <li class="flex gap-2">
+            <UIcon
+              name="i-lucide-lock"
+              class="text-blue-500 mt-0.5 shrink-0"
+            /> {{ $t('privacy.useAuth') }}
+          </li>
         </ul>
       </div>
 
       <!-- Extension data -->
       <div class="bg-default border border-default rounded-2xl px-6 py-6">
-        <h2 class="text-lg font-bold text-highlighted mb-3">{{ $t('privacy.extensionTitle') }}</h2>
-        <p class="text-sm text-muted leading-relaxed">{{ $t('privacy.extensionDesc') }}</p>
+        <h2 class="text-lg font-bold text-highlighted mb-3">
+          {{ $t('privacy.extensionTitle') }}
+        </h2>
+        <p class="text-sm text-muted leading-relaxed">
+          {{ $t('privacy.extensionDesc') }}
+        </p>
       </div>
 
       <!-- Third party -->
       <div class="bg-default border border-default rounded-2xl px-6 py-6">
-        <h2 class="text-lg font-bold text-highlighted mb-3">{{ $t('privacy.thirdPartyTitle') }}</h2>
-        <p class="text-sm text-muted leading-relaxed">{{ $t('privacy.thirdPartyDesc') }}</p>
+        <h2 class="text-lg font-bold text-highlighted mb-3">
+          {{ $t('privacy.thirdPartyTitle') }}
+        </h2>
+        <p class="text-sm text-muted leading-relaxed">
+          {{ $t('privacy.thirdPartyDesc') }}
+        </p>
       </div>
 
       <!-- Contact -->
       <div class="bg-default border border-default rounded-2xl px-6 py-6">
-        <h2 class="text-lg font-bold text-highlighted mb-3">{{ $t('privacy.contactTitle') }}</h2>
-        <p class="text-sm text-muted leading-relaxed">{{ $t('privacy.contactDesc') }}</p>
+        <h2 class="text-lg font-bold text-highlighted mb-3">
+          {{ $t('privacy.contactTitle') }}
+        </h2>
+        <p class="text-sm text-muted leading-relaxed">
+          {{ $t('privacy.contactDesc') }}
+        </p>
         <UButton
           to="https://github.com/RanggaCasper/Purifyt-FE/issues"
           external

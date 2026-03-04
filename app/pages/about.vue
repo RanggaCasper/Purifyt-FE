@@ -37,7 +37,10 @@ const team = [
       <!-- Mission -->
       <div class="bg-default border border-default rounded-2xl px-6 py-6">
         <h2 class="text-lg font-bold text-highlighted mb-3 flex items-center gap-2">
-          <UIcon name="i-lucide-target" class="text-blue-500" />
+          <UIcon
+            name="i-lucide-target"
+            class="text-blue-500"
+          />
           {{ $t('about.missionTitle') }}
         </h2>
         <p class="text-sm text-muted leading-relaxed">
@@ -48,7 +51,10 @@ const team = [
       <!-- What is Purifyt -->
       <div class="bg-default border border-default rounded-2xl px-6 py-6">
         <h2 class="text-lg font-bold text-highlighted mb-3 flex items-center gap-2">
-          <UIcon name="i-lucide-info" class="text-blue-500" />
+          <UIcon
+            name="i-lucide-info"
+            class="text-blue-500"
+          />
           {{ $t('about.whatTitle') }}
         </h2>
         <p class="text-sm text-muted leading-relaxed">
@@ -59,7 +65,10 @@ const team = [
       <!-- Tech -->
       <div class="bg-default border border-default rounded-2xl px-6 py-6">
         <h2 class="text-lg font-bold text-highlighted mb-4 flex items-center gap-2">
-          <UIcon name="i-lucide-cpu" class="text-blue-500" />
+          <UIcon
+            name="i-lucide-cpu"
+            class="text-blue-500"
+          />
           {{ $t('about.techTitle') }}
         </h2>
         <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
@@ -76,7 +85,10 @@ const team = [
       <!-- Team -->
       <div class="bg-default border border-default rounded-2xl px-6 py-6">
         <h2 class="text-lg font-bold text-highlighted mb-4 flex items-center gap-2">
-          <UIcon name="i-lucide-users" class="text-blue-500" />
+          <UIcon
+            name="i-lucide-users"
+            class="text-blue-500"
+          />
           {{ $t('about.teamTitle') }}
         </h2>
         <div class="space-y-3">
@@ -89,8 +101,12 @@ const team = [
               {{ m.avatar }}
             </div>
             <div class="flex-1">
-              <p class="font-semibold text-highlighted">{{ m.name }}</p>
-              <p class="text-sm text-muted">{{ m.role }}</p>
+              <p class="font-semibold text-highlighted">
+                {{ m.name }}
+              </p>
+              <p class="text-sm text-muted">
+                {{ m.role }}
+              </p>
             </div>
             <UButton
               v-if="m.github"
@@ -108,7 +124,10 @@ const team = [
       <!-- Contact -->
       <div class="bg-default border border-default rounded-2xl px-6 py-6">
         <h2 class="text-lg font-bold text-highlighted mb-3 flex items-center gap-2">
-          <UIcon name="i-lucide-mail" class="text-blue-500" />
+          <UIcon
+            name="i-lucide-mail"
+            class="text-blue-500"
+          />
           {{ $t('about.contactTitle') }}
         </h2>
         <p class="text-sm text-muted leading-relaxed">
