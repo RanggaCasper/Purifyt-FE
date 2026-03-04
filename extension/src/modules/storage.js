@@ -4,11 +4,11 @@ const PurifytStorage = (() => {
     apiBase: (typeof PurifytConfig !== 'undefined') ? PurifytConfig.API_BASE : 'http://localhost:9000',
     enabled: true,
     threshold: 0.5,
-    hideMode: 'blur',        // 'blur' | 'hide'
+    hideMode: 'blur', // 'blur' | 'hide'
     statsBlocked: 0,
     statsScanned: 0,
     lastVideoId: null,
-    scanStatus: 'idle'       // 'idle' | 'scanning' | 'done' | 'error'
+    scanStatus: 'idle' // 'idle' | 'scanning' | 'done' | 'error'
   }
 
   async function get() {

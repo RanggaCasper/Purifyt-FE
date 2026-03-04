@@ -1,5 +1,5 @@
 const PurifytScanner = (() => {
-  // State 
+  // State
   let observer = null
   let scrollHandler = null
   let processedNodes = new WeakSet()
@@ -11,17 +11,17 @@ const PurifytScanner = (() => {
   const judolMap = new Map()
 
   // Fallback (DOM) mode
-  let pendingQueue = []      // { node, text }
+  let pendingQueue = [] // { node, text }
   let batchTimer = null
   let usingFallback = false
   const BATCH_DELAY = 800
   const MAX_BATCH = 30
 
-  const COMMENT_SELECTOR =
-    'ytd-comment-thread-renderer #content-text, ' +
-    'ytd-comment-renderer #content-text'
+  const COMMENT_SELECTOR
+    = 'ytd-comment-thread-renderer #content-text, '
+      + 'ytd-comment-renderer #content-text'
 
-  // Helpers 
+  // Helpers
   /** Normalize text for comparison between API results and DOM text */
   function normalize(text) {
     return (text || '')
@@ -108,7 +108,6 @@ const PurifytScanner = (() => {
 
       // Apply to currently visible DOM comments
       applyToVisibleComments()
-
     } catch (err) {
       console.warn('[Purifyt] SCAN_VIDEO failed:', err, '→ falling back to DOM scan')
       usingFallback = true
@@ -222,9 +221,9 @@ const PurifytScanner = (() => {
       let commentThreadsRemoved = 0
       for (const m of mutations) {
         for (const node of m.removedNodes) {
-          if (node.nodeType === 1 &&
-              (node.tagName === 'YTD-COMMENT-THREAD-RENDERER' ||
-               node.tagName === 'YTD-COMMENT-VIEW-MODEL-V2')) {
+          if (node.nodeType === 1
+            && (node.tagName === 'YTD-COMMENT-THREAD-RENDERER'
+              || node.tagName === 'YTD-COMMENT-VIEW-MODEL-V2')) {
             commentThreadsRemoved++
           }
         }

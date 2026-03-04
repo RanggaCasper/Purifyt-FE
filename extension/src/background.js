@@ -58,7 +58,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
   if (handler) {
     handler(msg, sender)
       .then(sendResponse)
-      .catch(err => {
+      .catch((err) => {
         console.error('[Purifyt BG]', msg.type, err)
         sendResponse({ error: err.message })
       })

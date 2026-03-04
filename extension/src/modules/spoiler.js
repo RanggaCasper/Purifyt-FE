@@ -1,5 +1,4 @@
 const PurifytSpoiler = (() => {
-
   /**
    * Apply spoiler or hide to a comment node.
    * @param {Element} node - the #content-text element
@@ -47,10 +46,10 @@ const PurifytSpoiler = (() => {
   /** Hide mode: collapse the entire comment thread/renderer */
   function applyHide(node, pct) {
     // Find the closest comment container (thread or single comment)
-    const container =
-      node.closest('ytd-comment-thread-renderer') ||
-      node.closest('ytd-comment-renderer') ||
-      node.parentElement
+    const container
+      = node.closest('ytd-comment-thread-renderer')
+        || node.closest('ytd-comment-renderer')
+        || node.parentElement
 
     if (!container || container.classList.contains('purifyt-hidden')) return
 
@@ -102,7 +101,7 @@ const PurifytSpoiler = (() => {
   /** Remove all spoiler wrappers from the page */
   function removeAll() {
     // Remove blur spoilers
-    document.querySelectorAll('.purifyt-spoiler').forEach(wrapper => {
+    document.querySelectorAll('.purifyt-spoiler').forEach((wrapper) => {
       const blur = wrapper.querySelector('.purifyt-blur')
       if (blur && wrapper.parentNode) {
         while (blur.firstChild) {
@@ -113,10 +112,10 @@ const PurifytSpoiler = (() => {
     })
 
     // Remove hide indicators and restore hidden comments
-    document.querySelectorAll('.purifyt-hide-indicator').forEach(indicator => {
+    document.querySelectorAll('.purifyt-hide-indicator').forEach((indicator) => {
       indicator.remove()
     })
-    document.querySelectorAll('.purifyt-hidden').forEach(container => {
+    document.querySelectorAll('.purifyt-hidden').forEach((container) => {
       container.classList.remove('purifyt-hidden')
       container.style.display = container.dataset.purifytOriginalDisplay || ''
       delete container.dataset.purifytOriginalDisplay

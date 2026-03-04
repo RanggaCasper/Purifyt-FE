@@ -1,50 +1,50 @@
 document.addEventListener('DOMContentLoaded', async () => {
-  // Elements 
-  const viewLogin     = document.getElementById('viewLogin')
+  // Elements
+  const viewLogin = document.getElementById('viewLogin')
   const viewDashboard = document.getElementById('viewDashboard')
 
   // Login
-  const loginError    = document.getElementById('loginError')
+  const loginError = document.getElementById('loginError')
   const loginUsername = document.getElementById('loginUsername')
   const loginPassword = document.getElementById('loginPassword')
-  const btnLogin      = document.getElementById('btnLogin')
-  const loginBtnText  = document.getElementById('loginBtnText')
-  const loginSpinner  = document.getElementById('loginSpinner')
-  const linkRegister  = document.getElementById('linkRegister')
+  const btnLogin = document.getElementById('btnLogin')
+  const loginBtnText = document.getElementById('loginBtnText')
+  const loginSpinner = document.getElementById('loginSpinner')
+  const linkRegister = document.getElementById('linkRegister')
 
   // Dashboard
-  const userAvatar    = document.getElementById('userAvatar')
-  const userName      = document.getElementById('userName')
-  const userEmail     = document.getElementById('userEmail')
-  const btnLogout     = document.getElementById('btnLogout')
+  const userAvatar = document.getElementById('userAvatar')
+  const userName = document.getElementById('userName')
+  const userEmail = document.getElementById('userEmail')
+  const btnLogout = document.getElementById('btnLogout')
 
-  const toggleEnabled  = document.getElementById('toggleEnabled')
+  const toggleEnabled = document.getElementById('toggleEnabled')
   const selectHideMode = document.getElementById('selectHideMode')
-  const statusDot      = document.getElementById('statusDot')
-  const statusText     = document.getElementById('statusText')
-  const scanStatusRow  = document.getElementById('scanStatusRow')
-  const scanIndicator  = document.getElementById('scanIndicator')
+  const statusDot = document.getElementById('statusDot')
+  const statusText = document.getElementById('statusText')
+  const scanStatusRow = document.getElementById('scanStatusRow')
+  const scanIndicator = document.getElementById('scanIndicator')
   const scanStatusText = document.getElementById('scanStatusText')
 
-  const statScanned    = document.getElementById('statScanned')
-  const statBlocked    = document.getElementById('statBlocked')
-  const btnResetStats  = document.getElementById('btnResetStats')
+  const statScanned = document.getElementById('statScanned')
+  const statBlocked = document.getElementById('statBlocked')
+  const btnResetStats = document.getElementById('btnResetStats')
 
-  const inputApiBase   = document.getElementById('inputApiBase')
+  const inputApiBase = document.getElementById('inputApiBase')
   const inputThreshold = document.getElementById('inputThreshold')
   const thresholdValue = document.getElementById('thresholdValue')
-  const btnSave        = document.getElementById('btnSave')
+  const btnSave = document.getElementById('btnSave')
 
-  const toast         = document.getElementById('toast')
+  const toast = document.getElementById('toast')
   const footerVersion = document.getElementById('footerVersion')
 
   // Inject version from config.js into footer
   if (footerVersion && typeof PurifytConfig !== 'undefined') {
-    footerVersion.textContent =
-      `Purifyt v${PurifytConfig.VERSION} — dibuat dengan ❤️ untuk internet yang lebih bersih`
+    footerVersion.textContent
+      = `Purifyt v${PurifytConfig.VERSION} — dibuat dengan ❤️ untuk internet yang lebih bersih`
   }
 
-  // Helpers 
+  // Helpers
   function showView(view) {
     viewLogin.classList.toggle('hidden', view !== 'login')
     viewDashboard.classList.toggle('hidden', view !== 'dashboard')
@@ -77,9 +77,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const statusMap = {
       scanning: { text: 'Memindai komentar YouTube...', cls: 'scanning' },
-      done:     { text: 'Pemindaian selesai', cls: 'done' },
+      done: { text: 'Pemindaian selesai', cls: 'done' },
       fallback: { text: 'Mode fallback (DOM)', cls: 'fallback' },
-      error:    { text: 'Gagal memindai', cls: 'error' }
+      error: { text: 'Gagal memindai', cls: 'error' }
     }
 
     const info = statusMap[status] || { text: status, cls: '' }
@@ -95,14 +95,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }
 
-  // Messaging 
+  // Messaging
   function sendMsg(msg) {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       chrome.runtime.sendMessage(msg, resolve)
     })
   }
 
-  // Init: check auth state 
+  // Init: check auth state
   const auth = await sendMsg({ type: 'GET_AUTH' })
   const settings = await sendMsg({ type: 'GET_SETTINGS' })
 
@@ -115,10 +115,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Populate settings
   if (settings) {
-    toggleEnabled.checked  = settings.enabled !== false
-    selectHideMode.value   = settings.hideMode || 'blur'
-    inputApiBase.value     = settings.apiBase || (typeof PurifytConfig !== 'undefined' ? PurifytConfig.API_BASE : 'http://localhost:9000')
-    inputThreshold.value   = settings.threshold ?? 0.5
+    toggleEnabled.checked = settings.enabled !== false
+    selectHideMode.value = settings.hideMode || 'blur'
+    inputApiBase.value = settings.apiBase || (typeof PurifytConfig !== 'undefined' ? PurifytConfig.API_BASE : 'http://localhost:9000')
+    inputThreshold.value = settings.threshold ?? 0.5
     thresholdValue.textContent = `${Math.round((settings.threshold ?? 0.5) * 100)}%`
     updateScanStatus(settings.scanStatus)
   }
