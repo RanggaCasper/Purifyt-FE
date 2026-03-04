@@ -94,7 +94,19 @@
     "ctaTitle": "Bersihkan Kolom Komentar Anda Sekarang",
     "ctaDesc": "Daftar dan coba Auto Delete atau Quick Predict secara gratis, tanpa pembayaran.",
     "ctaRegister": "Daftar Gratis",
-    "ctaTryPredict": "Coba Quick Predict"
+    "ctaTryPredict": "Coba Quick Predict",
+
+    "extensionLabel": "Browser Extension",
+    "extensionTitle": "Filter Komentar Judi Langsung di YouTube",
+    "extensionDesc": "Install extension Purifyt untuk mendeteksi dan menyembunyikan komentar judi online secara otomatis saat Anda menonton YouTube — real-time, didukung AI.",
+    "extensionTagline": "Filter komentar judi online berbasis AI khusus YouTube",
+    "extensionFeature1": "Mendeteksi komentar judi dengan akurasi AI 99%",
+    "extensionFeature2": "Blur atau sembunyikan komentar judi online secara instan",
+    "extensionFeature3": "Bekerja real-time saat Anda scroll kolom komentar",
+    "extensionFeature4": "Aman — hanya aktif di kolom komentar YouTube",
+    "extensionDownload": "Download Extension",
+    "extensionChangelog": "Semua Rilis",
+    "extensionNote": "Chrome / Edge / Brave • Load unpacked di developer mode"
   },
 
   "footer": {
@@ -103,6 +115,12 @@
     "features": "Fitur",
     "account": "Akun",
     "register": "Daftar",
+    "legal": "Info & Legal",
+    "about": "Tentang Kami",
+    "privacy": "Kebijakan Privasi",
+    "terms": "Ketentuan Layanan",
+    "license": "Lisensi",
+    "extension": "Extension",
     "copyright": "Dibuat untuk menjaga konten YouTube tetap bersih.",
     "aiAccuracy": "AI Accuracy 99%",
     "seleniumAuto": "Selenium Automation"
@@ -384,5 +402,90 @@
     "processing": "Memproses...",
     "confidenceNormal": "Normal:",
     "confidenceJudi": "Judi:"
+  },
+
+  "download": {
+    "label": "Download",
+    "title": "Download Extension Purifyt",
+    "desc": "Dapatkan extension browser Purifyt terbaru untuk mendeteksi dan menyembunyikan komentar judi online secara real-time di YouTube.",
+    "loading": "Mengambil release dari GitHub...",
+    "errorFetch": "Gagal mengambil release dari GitHub.",
+    "retry": "Coba Lagi",
+    "noReleases": "Belum ada release yang tersedia. Cek kembali nanti!",
+    "latestRelease": "Release Terbaru",
+    "olderReleases": "Release Sebelumnya",
+    "downloadZip": "Download .zip",
+    "viewOnGithub": "Lihat di GitHub",
+    "installNote": "Chrome / Edge / Brave • Load unpacked di developer mode",
+    "installTitle": "Cara Install",
+    "step1": "Download file .zip dari release terbaru di atas.",
+    "step2": "Ekstrak file .zip ke folder di komputer Anda.",
+    "step3": "Buka Chrome dan buka chrome://extensions.",
+    "step4": "Aktifkan \"Developer mode\" (toggle pojok kanan atas).",
+    "step5": "Klik \"Load unpacked\" dan pilih folder hasil ekstrak."
+  },
+
+  "about": {
+    "label": "Tentang Kami",
+    "title": "Tentang Purifyt",
+    "desc": "Pelajari lebih lanjut tentang misi kami menjaga internet bersih dari spam judi online.",
+    "missionTitle": "Misi Kami",
+    "missionDesc": "Purifyt dibangun dengan satu tujuan jelas: melindungi pengguna internet, terutama kreator konten dan komunitasnya, dari banjir komentar spam judi online (judol) di platform sosial media. Kami percaya setiap orang berhak mendapatkan pengalaman browsing yang bersih, aman, dan positif.",
+    "whatTitle": "Apa itu Purifyt?",
+    "whatDesc": "Purifyt adalah platform dan extension browser berbasis AI yang mendeteksi dan menghapus komentar judi online di sosial media, dimulai dari YouTube. Menggunakan klasifikasi machine learning dengan akurasi 99%, dikombinasikan dengan otomasi Selenium untuk penghapusan otomatis. Extension browser memberikan perlindungan real-time saat Anda browsing.",
+    "techTitle": "Teknologi yang Digunakan",
+    "teamTitle": "Tim",
+    "contactTitle": "Kontak & Masukan",
+    "contactDesc": "Punya pertanyaan, saran, atau menemukan bug? Kami ingin mendengar dari Anda. Buka issue di repository GitHub kami atau hubungi melalui platform.",
+    "openIssue": "Buka Issue di GitHub"
+  },
+
+  "privacy": {
+    "label": "Legal",
+    "title": "Kebijakan Privasi",
+    "lastUpdated": "Terakhir diperbarui",
+    "overviewTitle": "Ringkasan",
+    "overviewDesc": "Purifyt menghormati privasi Anda. Kebijakan ini menjelaskan data apa yang kami kumpulkan, bagaimana kami menggunakannya, dan hak Anda. Kami berkomitmen pada transparansi dan hanya mengumpulkan data yang diperlukan untuk menyediakan layanan kami.",
+    "collectTitle": "Data yang Kami Kumpulkan",
+    "collectAccount": "Informasi akun: username, email, dan password yang di-hash saat Anda mendaftar.",
+    "collectComments": "Komentar YouTube: diambil dan dianalisis untuk klasifikasi konten judi. Komentar diproses secara real-time dan tidak disimpan permanen kecuali menjadi bagian dari dataset yang Anda buat.",
+    "collectUsage": "Statistik penggunaan dasar: jumlah scan dan deteksi (anonim, tanpa data pribadi).",
+    "useTitle": "Bagaimana Kami Menggunakan Data Anda",
+    "useDetect": "Untuk mendeteksi dan mengklasifikasikan komentar judi menggunakan model AI kami.",
+    "useImprove": "Untuk meningkatkan akurasi model dan kualitas layanan.",
+    "useAuth": "Untuk mengautentikasi akun Anda dan mengamankan akses API.",
+    "extensionTitle": "Data Extension Browser",
+    "extensionDesc": "Extension browser Purifyt hanya aktif di halaman YouTube. Extension mengirim teks komentar YouTube ke backend kami untuk klasifikasi. Extension tidak melacak riwayat browsing Anda, mengumpulkan data pribadi, atau mengakses data apapun di luar bagian komentar YouTube. Semua pengaturan disimpan secara lokal di browser Anda.",
+    "thirdPartyTitle": "Layanan Pihak Ketiga",
+    "thirdPartyDesc": "Kami menggunakan YouTube Data API untuk mengambil komentar. Kami tidak menjual, membagikan, atau mentransfer data Anda ke pihak ketiga manapun untuk tujuan iklan atau pemasaran.",
+    "contactTitle": "Ada Pertanyaan?",
+    "contactDesc": "Jika Anda memiliki pertanyaan tentang kebijakan privasi ini, silakan hubungi kami melalui GitHub."
+  },
+
+  "license": {
+    "label": "Legal",
+    "title": "Lisensi",
+    "subtitle": "Purifyt adalah perangkat lunak open source yang dilisensikan di bawah MIT License.",
+    "viewOnGithub": "Lihat LICENSE di GitHub"
+  },
+
+  "terms": {
+    "label": "Legal",
+    "title": "Ketentuan Layanan",
+    "acceptTitle": "Penerimaan Ketentuan",
+    "acceptDesc": "Dengan menggunakan Purifyt (website, API, atau extension browser), Anda menyetujui Ketentuan Layanan ini. Jika Anda tidak setuju, mohon untuk tidak menggunakan layanan kami.",
+    "serviceTitle": "Deskripsi Layanan",
+    "serviceDesc": "Purifyt menyediakan deteksi dan penghapusan komentar judi online di YouTube berbasis AI. Ini termasuk dashboard web, REST API, dan extension browser. Layanan disediakan apa adanya dan kami dapat memperbarui atau mengubah fitur kapan saja.",
+    "accountTitle": "Tanggung Jawab Akun",
+    "accountDesc": "Anda bertanggung jawab menjaga keamanan kredensial akun Anda. Jangan bagikan password Anda. Anda bertanggung jawab atas semua aktivitas di akun Anda.",
+    "useTitle": "Penggunaan yang Diperbolehkan",
+    "useAllowed1": "Gunakan Purifyt untuk mendeteksi dan menghapus spam judi dari konten Anda sendiri.",
+    "useAllowed2": "Gunakan extension browser untuk perlindungan browsing pribadi.",
+    "useNotAllowed1": "Jangan gunakan Purifyt untuk melecehkan, spam, atau merugikan orang lain.",
+    "useNotAllowed2": "Jangan mencoba reverse-engineer, menyalahgunakan, atau membebani API kami.",
+    "disclaimerTitle": "Penafian",
+    "disclaimerDesc": "Purifyt disediakan tanpa jaminan apapun. Meskipun model AI kami memiliki akurasi 99%, tidak ada sistem yang sempurna. Kami tidak bertanggung jawab atas false positive (komentar normal ditandai sebagai judi) atau false negative (komentar judi tidak terdeteksi).",
+    "changesTitle": "Perubahan Ketentuan",
+    "changesDesc": "Kami dapat memperbarui ketentuan ini kapan saja. Penggunaan Purifyt secara terus-menerus setelah perubahan berarti Anda menerima ketentuan yang diperbarui."
   }
 }

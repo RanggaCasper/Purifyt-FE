@@ -12,6 +12,7 @@ definePageMeta({
     <LandingFeaturesSection />
     <LandingStepsSection />
     <LandingDemoSection />
+    <LandingExtensionSection />
     <LandingCtaSection />
   </div>
 </template>

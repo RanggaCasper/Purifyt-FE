@@ -52,7 +52,7 @@ export function useLogMeta() {
    * Resolve icon + color for a log entry.
    * For auto-delete logs, pass both `type` and `step` (step takes priority).
    * For explorer logs, pass just `type`.
-   */
+  */
   function getLogMeta(type: string, step?: string): LogMeta {
     return mergedMap[step ?? type] ?? defaultMeta
   }

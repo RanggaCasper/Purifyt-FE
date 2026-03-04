@@ -28,7 +28,7 @@ export default defineNuxtRouteMiddleware(async (to) => {
     })
   }
 
-  const publicPages = ['/login', '/register', '/']
+  const publicPages = ['/login', '/register', '/', '/download', '/about', '/privacy', '/terms', '/license', '/landing']
   const isPublic = publicPages.includes(to.path)
 
   // Protected route without auth → redirect

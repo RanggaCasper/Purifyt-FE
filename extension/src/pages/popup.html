@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Purifyt</title>
+  <link rel="stylesheet" href="../styles/popup.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="header">
+    <img src="../icons/logo.png" alt="Purifyt" class="header-logo" />
+    <div class="header-info">
+      <h1>Purifyt</h1>
+      <p>YouTube Judol Comment Filter</p>
+    </div>
+  </div>
+
+  <!-- AUTH: LOGIN -->
+  <div id="viewLogin" class="hidden">
+    <div class="section">
+      <div class="section-title">🔐 Login</div>
+      <p style="font-size:12px; color:#64748B; margin-bottom:14px;">
+        Login dengan akun Purifyt untuk menggunakan fitur deteksi komentar judol di YouTube.
+      </p>
+      <div id="loginError" class="form-error"></div>
+      <div class="form-group">
+        <label class="form-label" for="loginUsername">Username</label>
+        <input type="text" id="loginUsername" class="form-input" placeholder="Masukkan username" autocomplete="username" />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="loginPassword">Password</label>
+        <input type="password" id="loginPassword" class="form-input" placeholder="Masukkan password" autocomplete="current-password" />
+      </div>
+      <button class="btn btn-primary btn-block" id="btnLogin">
+        <span id="loginBtnText">Login</span>
+        <span id="loginSpinner" class="spinner hidden"></span>
+      </button>
+      <p style="font-size:11px; color:#94A3B8; text-align:center; margin-top:10px;">
+        Belum punya akun?
+        <a href="#" id="linkRegister" style="color:#2563EB; font-weight:500;">Daftar di website</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- AUTH: LOGGED IN -->
+  <div id="viewDashboard" class="hidden">
+
+    <!-- User info -->
+    <div class="section">
+      <div class="auth-card">
+        <div class="auth-user">
+          <div class="auth-avatar" id="userAvatar">P</div>
+          <div>
+            <div class="auth-name" id="userName">-</div>
+            <div class="auth-email" id="userEmail">-</div>
+          </div>
+          <button class="btn btn-sm btn-outline" id="btnLogout" style="margin-left:auto;">Logout</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Status & Toggles -->
+    <div class="section">
+      <div class="section-title">⚡ Status</div>
+      <div class="row">
+        <span class="row-label">
+          <span class="status-dot" id="statusDot"></span>
+          <span id="statusText">Aktif</span>
+        </span>
+        <label class="switch">
+          <input type="checkbox" id="toggleEnabled" checked />
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div class="row">
+        <span class="row-label">Mode tampilan komentar judol</span>
+        <select id="selectHideMode" class="form-select">
+          <option value="blur">🔵 Blur (spoiler)</option>
+          <option value="hide">🔴 Sembunyikan</option>
+        </select>
+      </div>
+      <!-- Scan status indicator -->
+      <div class="row" id="scanStatusRow" style="display:none;">
+        <span class="row-label">
+          <span class="scan-indicator" id="scanIndicator"></span>
+          <span id="scanStatusText">-</span>
+        </span>
+      </div>
+    </div>
+
+    <!-- Stats (real-time) -->
+    <div class="section">
+      <div class="section-title">📊 Statistik <span class="live-badge">LIVE</span></div>
+      <div class="stats">
+        <div class="stat-card scanned">
+          <div class="stat-value" id="statScanned">0</div>
+          <div class="stat-label">Dipindai</div>
+        </div>
+        <div class="stat-card blocked">
+          <div class="stat-value" id="statBlocked">0</div>
+          <div class="stat-label">Judol Terdeteksi</div>
+        </div>
+      </div>
+      <div style="margin-top:8px; text-align:right;">
+        <button class="btn btn-sm btn-ghost" id="btnResetStats">Reset Statistik</button>
+      </div>
+    </div>
+
+    <!-- Settings -->
+    <div class="section">
+      <div class="section-title">⚙️ Pengaturan</div>
+
+      <div class="form-group">
+        <label class="form-label">API Server</label>
+        <input type="text" id="inputApiBase" placeholder="http://localhost:9000" />
+      </div>
+
+      <div class="range-row">
+        <label class="form-label">Threshold Deteksi</label>
+        <input type="range" id="inputThreshold" min="0.1" max="0.99" step="0.01" value="0.5" />
+        <div class="range-labels">
+          <span>Longgar (10%)</span>
+          <span id="thresholdValue" style="font-weight:600; color:#1E293B;">50%</span>
+          <span>Ketat (99%)</span>
+        </div>
+      </div>
+
+      <div style="margin-top:14px; text-align:right;">
+        <button class="btn btn-primary" id="btnSave">💾 Simpan Pengaturan</button>
+      </div>
+    </div>
+
+    <!-- Platform -->
+    <div class="section">
+      <div class="section-title">🌐 Platform</div>
+      <div class="platform-list">
+        <span class="platform-tag platform-active">▶ YouTube</span>
+        <span class="platform-tag platform-soon">Facebook (segera)</span>
+        <span class="platform-tag platform-soon">Instagram (segera)</span>
+        <span class="platform-tag platform-soon">TikTok (segera)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer" id="footerVersion">
+    Purifyt v1.0.0 — dibuat dengan ❤️ untuk internet yang lebih bersih
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">✓ Tersimpan!</div>
+
+  <!-- Scripts -->
+  <script src="../modules/config.js"></script>
+  <script src="../modules/storage.js"></script>
+  <script src="../modules/auth.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -85,7 +85,7 @@ const toggleLocale = () => {
     <footer class="border-t border-default bg-default">
       <!-- Upper footer -->
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-10">
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10">
           <!-- Brand -->
           <div class="lg:col-span-2">
             <div class="flex items-center gap-2 mb-4">
@@ -135,6 +135,18 @@ const toggleLocale = () => {
                   {{ $t("landing.featurePredict") }}
                 </NuxtLink>
               </li>
+              <li>
+                <NuxtLink
+                  to="/download"
+                  class="text-sm text-muted hover:text-highlighted transition-colors flex items-center gap-1.5"
+                >
+                  <UIcon
+                    name="i-lucide-download"
+                    class="text-xs text-blue-400"
+                  />
+                  {{ $t("footer.extension") }}
+                </NuxtLink>
+              </li>
             </ul>
           </div>
 
@@ -161,6 +173,39 @@ const toggleLocale = () => {
                   to="/dashboard"
                   class="text-sm text-muted hover:text-highlighted transition-colors"
                 >{{ $t("common.dashboard") }}</NuxtLink>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Legal & Info -->
+          <div>
+            <h4 class="text-sm font-semibold text-highlighted mb-4">
+              {{ $t("footer.legal") }}
+            </h4>
+            <ul class="space-y-2.5">
+              <li>
+                <NuxtLink
+                  to="/about"
+                  class="text-sm text-muted hover:text-highlighted transition-colors"
+                >{{ $t("footer.about") }}</NuxtLink>
+              </li>
+              <li>
+                <NuxtLink
+                  to="/privacy"
+                  class="text-sm text-muted hover:text-highlighted transition-colors"
+                >{{ $t("footer.privacy") }}</NuxtLink>
+              </li>
+              <li>
+                <NuxtLink
+                  to="/terms"
+                  class="text-sm text-muted hover:text-highlighted transition-colors"
+                >{{ $t("footer.terms") }}</NuxtLink>
+              </li>
+              <li>
+                <NuxtLink
+                  to="/license"
+                  class="text-sm text-muted hover:text-highlighted transition-colors"
+                >{{ $t("footer.license") }}</NuxtLink>
               </li>
             </ul>
           </div>

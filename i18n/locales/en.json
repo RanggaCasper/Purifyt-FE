@@ -94,7 +94,19 @@
     "ctaTitle": "Clean Your Comment Section Now",
     "ctaDesc": "Register and try Auto Delete or Quick Predict for free, no payment required.",
     "ctaRegister": "Register Free",
-    "ctaTryPredict": "Try Quick Predict"
+    "ctaTryPredict": "Try Quick Predict",
+
+    "extensionLabel": "Browser Extension",
+    "extensionTitle": "Filter Gambling Comments Directly in YouTube",
+    "extensionDesc": "Install the Purifyt extension to automatically detect and hide online gambling comments while you watch YouTube — in real-time, powered by AI.",
+    "extensionTagline": "AI-powered online gambling filter for YouTube",
+    "extensionFeature1": "Detects gambling comments with 99% AI accuracy",
+    "extensionFeature2": "Auto-blur or hide gambling comments instantly",
+    "extensionFeature3": "Works in real-time as you scroll the comment section",
+    "extensionFeature4": "Secure — only activates on YouTube comment sections",
+    "extensionDownload": "Download Extension",
+    "extensionChangelog": "All Releases",
+    "extensionNote": "Chrome / Edge / Brave • Load unpacked in developer mode"
   },
 
   "footer": {
@@ -103,6 +115,12 @@
     "features": "Features",
     "account": "Account",
     "register": "Register",
+    "legal": "Info & Legal",
+    "about": "About Us",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "license": "License",
+    "extension": "Extension",
     "copyright": "Built to keep YouTube content clean.",
     "aiAccuracy": "AI Accuracy 99%",
     "seleniumAuto": "Selenium Automation"
@@ -384,5 +402,90 @@
     "processing": "Processing...",
     "confidenceNormal": "Normal:",
     "confidenceJudi": "Gambling:"
+  },
+
+  "download": {
+    "label": "Download",
+    "title": "Download Purifyt Extension",
+    "desc": "Get the latest Purifyt browser extension to detect and hide gambling comments in real-time on YouTube.",
+    "loading": "Fetching releases from GitHub...",
+    "errorFetch": "Failed to fetch releases from GitHub.",
+    "retry": "Try Again",
+    "noReleases": "No releases available yet. Check back later!",
+    "latestRelease": "Latest Release",
+    "olderReleases": "Previous Releases",
+    "downloadZip": "Download .zip",
+    "viewOnGithub": "View on GitHub",
+    "installNote": "Chrome / Edge / Brave • Load unpacked in developer mode",
+    "installTitle": "How to Install",
+    "step1": "Download the .zip file from the latest release above.",
+    "step2": "Extract the .zip file to a folder on your computer.",
+    "step3": "Open Chrome and go to chrome://extensions.",
+    "step4": "Enable \"Developer mode\" (top-right toggle).",
+    "step5": "Click \"Load unpacked\" and select the extracted folder."
+  },
+
+  "about": {
+    "label": "About Us",
+    "title": "About Purifyt",
+    "desc": "Learn more about our mission to keep the internet clean from online gambling spam.",
+    "missionTitle": "Our Mission",
+    "missionDesc": "Purifyt was built with one clear goal: to protect internet users, especially content creators and their communities, from the flood of online gambling spam comments on social media platforms. We believe everyone deserves a clean, safe, and positive browsing experience.",
+    "whatTitle": "What is Purifyt?",
+    "whatDesc": "Purifyt is an AI-powered platform and browser extension that detects and removes online gambling comments across social media, starting with YouTube. It uses machine learning classification with 99% accuracy, combined with Selenium automation for automatic deletion. The browser extension provides real-time protection while you browse.",
+    "techTitle": "Technology Stack",
+    "teamTitle": "Team",
+    "contactTitle": "Contact & Feedback",
+    "contactDesc": "Have questions, suggestions, or found a bug? We'd love to hear from you. Open an issue on our GitHub repository or reach out through the platform.",
+    "openIssue": "Open Issue on GitHub"
+  },
+
+  "privacy": {
+    "label": "Legal",
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated",
+    "overviewTitle": "Overview",
+    "overviewDesc": "Purifyt respects your privacy. This policy explains what data we collect, how we use it, and your rights. We are committed to transparency and only collect what is necessary to provide our services.",
+    "collectTitle": "Data We Collect",
+    "collectAccount": "Account information: username, email, and hashed password when you register.",
+    "collectComments": "YouTube comments: fetched and analyzed for gambling content classification. Comments are processed in real-time and not permanently stored unless part of a dataset you create.",
+    "collectUsage": "Basic usage statistics: scan counts and detection counts (anonymized, no personal data).",
+    "useTitle": "How We Use Your Data",
+    "useDetect": "To detect and classify gambling comments using our AI model.",
+    "useImprove": "To improve model accuracy and service quality.",
+    "useAuth": "To authenticate your account and secure API access.",
+    "extensionTitle": "Browser Extension Data",
+    "extensionDesc": "The Purifyt browser extension only activates on YouTube pages. It sends YouTube comment text to our backend for classification. It does not track your browsing history, collect personal data, or access any data outside YouTube comment sections. All settings are stored locally in your browser.",
+    "thirdPartyTitle": "Third-Party Services",
+    "thirdPartyDesc": "We use the YouTube Data API to fetch comments. We do not sell, share, or transfer your data to any third party for advertising or marketing purposes.",
+    "contactTitle": "Questions?",
+    "contactDesc": "If you have any questions about this privacy policy, please contact us through GitHub."
+  },
+
+  "license": {
+    "label": "Legal",
+    "title": "License",
+    "subtitle": "Purifyt is open source software licensed under the MIT License.",
+    "viewOnGithub": "View LICENSE on GitHub"
+  },
+
+  "terms": {
+    "label": "Legal",
+    "title": "Terms of Service",
+    "acceptTitle": "Acceptance of Terms",
+    "acceptDesc": "By using Purifyt (the website, API, or browser extension), you agree to these Terms of Service. If you do not agree, please do not use our services.",
+    "serviceTitle": "Description of Service",
+    "serviceDesc": "Purifyt provides AI-powered detection and removal of online gambling comments on YouTube. This includes a web dashboard, REST API, and browser extension. The service is provided as-is and we may update or change features at any time.",
+    "accountTitle": "Account Responsibility",
+    "accountDesc": "You are responsible for maintaining the security of your account credentials. Do not share your password. You are responsible for all activity under your account.",
+    "useTitle": "Acceptable Use",
+    "useAllowed1": "Use Purifyt to detect and remove gambling spam from your own content.",
+    "useAllowed2": "Use the browser extension for personal browsing protection.",
+    "useNotAllowed1": "Do not use Purifyt to harass, spam, or harm others.",
+    "useNotAllowed2": "Do not attempt to reverse-engineer, abuse, or overload our API.",
+    "disclaimerTitle": "Disclaimer",
+    "disclaimerDesc": "Purifyt is provided without warranties of any kind. While our AI model has 99% accuracy, no system is perfect. We are not responsible for false positives (normal comments flagged as gambling) or false negatives (gambling comments not detected).",
+    "changesTitle": "Changes to Terms",
+    "changesDesc": "We may update these terms at any time. Continued use of Purifyt after changes constitutes acceptance of the updated terms."
   }
 }

@@ -1,0 +1,120 @@
+# Release Extension Workflow
+# How to use:
+#   git tag v1.2.0
+#   git push origin v1.2.0
+
+name: Release Extension
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Build & Release Extension
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Get version from tag
+      - name: Extract version from tag
+        id: version
+        run: |
+          TAG="${GITHUB_REF_NAME}"
+          VERSION="${TAG#v}"
+          echo "tag=$TAG"         >> "$GITHUB_OUTPUT"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "zip=purifyt-extension-${TAG}.zip" >> "$GITHUB_OUTPUT"
+          echo "✅ Tag: $TAG | Version: $VERSION"
+
+      # 3. Update manifest.json
+      - name: Update manifest.json version
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          jq --arg v "$VERSION" '.version = $v' \
+            extension/manifest.json > extension/manifest.tmp.json
+          mv extension/manifest.tmp.json extension/manifest.json
+          echo "✅ manifest.json → version: $VERSION"
+
+      # 4. Update config.js VERSION
+      - name: Update config.js VERSION
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          sed -i "s/VERSION: '[^']*'/VERSION: '$VERSION'/" \
+            extension/src/modules/config.js
+          echo "✅ config.js → VERSION: '$VERSION'"
+
+      # 5. validate all required files exist
+      - name: Validate required files
+        run: |
+          required=(
+            "extension/manifest.json"
+            "extension/src/background.js"
+            "extension/src/content.js"
+            "extension/src/modules/config.js"
+            "extension/src/modules/storage.js"
+            "extension/src/modules/auth.js"
+            "extension/src/modules/api.js"
+            "extension/src/modules/scanner.js"
+            "extension/src/modules/spoiler.js"
+            "extension/src/pages/popup.html"
+            "extension/src/pages/popup.js"
+          )
+          for f in "${required[@]}"; do
+            if [ ! -f "$f" ]; then
+              echo "❌ Missing: $f"
+              exit 1
+            fi
+          done
+          echo "✅ All required files are present"
+
+      # 6. Package extension jadi .zip
+      - name: Package extension
+        run: |
+          ZIP="${{ steps.version.outputs.zip }}"
+          cd extension
+          zip -r "../$ZIP" . \
+            --exclude "*.DS_Store" \
+            --exclude "__MACOSX/*" \
+            --exclude "*.git*" \
+            --exclude "*.map"
+          cd ..
+          echo "✅ Package created: $ZIP"
+          echo "📦 Size: $(du -sh "$ZIP" | cut -f1)"
+          unzip -l "$ZIP" | tail -5
+
+      # 7. Buat GitHub Release & upload zip
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: "Purifyt Extension ${{ steps.version.outputs.tag }}"
+          tag_name: ${{ steps.version.outputs.tag }}
+          body: |
+            ## 🧹 Purifyt Extension ${{ steps.version.outputs.tag }}
+
+            ### Cara Install Manual (Developer Mode)
+            1. Download file `.zip` di bawah dan ekstrak
+            2. Buka Chrome → `chrome://extensions`
+            3. Aktifkan **Developer mode** (pojok kanan atas)
+            4. Klik **Load unpacked** → pilih folder hasil ekstrak
+            5. Selesai! Purifyt siap digunakan.
+
+            ### How to Install Manually (Developer Mode)
+            1. Download the `.zip` file below and extract it
+            2. Open Chrome → `chrome://extensions`
+            3. Enable **Developer mode** (top right corner)
+            4. Click **Load unpacked** → select the extracted folder
+            5. Done! Purifyt is ready to use.
+          generate_release_notes: true
+          draft: false
+          prerelease: ${{ contains(steps.version.outputs.tag, '-') }}
+          files: ${{ steps.version.outputs.zip }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
