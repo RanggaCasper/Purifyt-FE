@@ -1,6 +1,4 @@
-// eslint-disable-next-line no-unused-vars
 const PurifytApi = (() => {
-
   /**
    * Scan a YouTube video: fetch comments via YouTube API + classify them.
    * Calls POST /api/v1/extension/scan-video

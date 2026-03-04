@@ -11,7 +11,6 @@
  * manifest.json saat kamu push git tag (misal: git tag v1.2.0).
  * ============================================================ */
 
-// eslint-disable-next-line no-unused-vars
 const PurifytConfig = Object.freeze({
 
   // ── Backend API ─────────────────────────────────────────────────
@@ -26,6 +25,6 @@ const PurifytConfig = Object.freeze({
   // ── Versi Extension ─────────────────────────────────────────────
   // HARUS sama dengan field "version" di manifest.json.
   // Release workflow otomatis mensinkronkan keduanya saat build.
-  VERSION: '1.0.0',
+  VERSION: '1.0.0'
 
 })
